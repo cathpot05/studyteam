@@ -1,0 +1,129 @@
+﻿<Window x:Class="SampleSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SampleSystem"
+        mc:Ignorable="d"
+        Title="Sample System" Height="350" Width="525" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <local:MarginConverter x:Key="marginConverter" Margin="Right" Multiplier="-1"/>
+
+        <Storyboard x:Key="sbShowRightMenu">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=Notifs, Path=ItemSize, Converter={StaticResource marginConverter}}" To="0 0 0 0" DecelerationRatio="0.9" Duration="0:0:0.5"/>
+        </Storyboard>
+        <Storyboard x:Key="sbHideRightMenu">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=Notifs, Path=ItemSize, Converter={StaticResource marginConverter}}" To="190 0 -190 0" AccelerationRatio="0.9" Duration="0:0:0.5"/>
+        </Storyboard>
+    </Window.Resources>
+    <Grid>
+        <Grid x:Name="main_grid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="220"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="first_row_grid" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="330"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid x:Name="LoadData" Grid.Column="0">
+
+                </Grid>
+                <Grid  Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </Grid>
+                    
+                    <Grid Grid.Row="1">
+                        <Button x:Name="btnRightMenuShow" Width="30" Height="68" Content="" HorizontalAlignment="Right" Click="btnRightMenuShow_Click" BorderBrush="Transparent">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Images/l_arrow.png"/>
+                            </Button.Background>
+                        </Button>
+                        <Button x:Name="btnRightMenuHide" Panel.ZIndex="2" Width="30" Height="68" Content="" HorizontalAlignment="Right" Visibility="Hidden" BorderBrush="Transparent" Click="btnRightMenuHide_Click">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Images/r_arrow.png"/>
+                            </Button.Background>
+                        </Button>
+                        <local:Notifications x:Name="Notifs" Margin="190 0 -190 0"/>
+                    </Grid>
+                    
+                </Grid>
+            </Grid>
+            <Grid x:Name="second_row_grid" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button x:Name="btnUserWindow" Width="70" Height="70" Content="" BorderBrush="Transparent">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Images\settings.png"></ImageBrush>
+                        </Button.Background>
+                    </Button>
+                    <Label Content="User Config" HorizontalAlignment="Center" FontFamily="Century Gothic" FontWeight="Bold"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button x:Name="btnbooksWindow" Width="70" Height="70" BorderBrush="Transparent">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Images\book.png"></ImageBrush>
+                        </Button.Background>
+                    </Button>
+                    <Label Content="Books" HorizontalAlignment="Center" FontFamily="Century Gothic" FontWeight="Bold"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button x:Name="btnAuthorWindow" Width="70" Height="70" BorderBrush="Transparent">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Images\pen.png"></ImageBrush>
+                        </Button.Background>
+                    </Button>
+                    <Label Content="Author" HorizontalAlignment="Center" FontFamily="Century Gothic" FontWeight="Bold"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button x:Name="btnborrowerWindow" Width="70" Height="70" BorderBrush="Transparent">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Images\users.png"></ImageBrush>
+                        </Button.Background>
+                    </Button>
+                    <Label Content="Barrower" HorizontalAlignment="Center" FontFamily="Century Gothic" FontWeight="Bold"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button x:Name="btnCourseWindow" Width="70" Height="70" BorderBrush="Transparent">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Images\texteditor.png"></ImageBrush>
+                        </Button.Background>
+                    </Button>
+                    <Label Content="Course" HorizontalAlignment="Center" FontFamily="Century Gothic" FontWeight="Bold"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button x:Name="btnTransWindow" Width="70" Height="70" BorderBrush="Transparent">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Images\filemanager.png"></ImageBrush>
+                        </Button.Background>
+                    </Button>
+                    <Label Content="Transactions" FontFamily="Century Gothic" FontWeight="Bold"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
