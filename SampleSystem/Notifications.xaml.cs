@@ -34,9 +34,16 @@ namespace SampleSystem
                 return;
             }
             else {
-                string query = "SELECT COUNT(*) FROM tblTransaction WHERE status = 0";
+                string query = "SELECT COUNT(*) as 'count' FROM tblTransactions WHERE status = 0";
                 SqlCommand cmd = new SqlCommand(query, con.Con);
                 SqlDataReader sdr = cmd.ExecuteReader();
+                while (sdr.Read())
+                {
+                    string unreturned = sdr["count"].ToString();
+                    txtUnreturnedbook.Text = "Unreturned books: " + unreturned;
+                    Console.WriteLine("Unreturned books:" + sdr["count"]);
+                }
+                
 
             }
         }
