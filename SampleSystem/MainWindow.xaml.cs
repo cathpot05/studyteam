@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +26,22 @@ namespace SampleSystem
         public MainWindow()
         {
             InitializeComponent();
+
+            //foreach (Button wrapButton in second_row_grid.Children)
+            //{
+            //    Action<string> wrapButtonFunctions = (Buttons) =>
+            //    {
+            //        switch (Buttons)
+            //        {
+            //            case "btnUserWindow":
+            //                {
+
+            //                }
+            //                 break;
+            //        }
+            //    };
+                
+            //}
         }
 
         private void btnRightMenuShow_Click(object sender, RoutedEventArgs e)
@@ -54,6 +72,71 @@ namespace SampleSystem
         {
             menuslide(false);
             Console.WriteLine("btnhide was click");
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            onLoadBooks();
+        }
+
+        private void onLoadBooks()
+        {
+            SqlConnect con = new SqlConnect();
+            con.conOpen();
+            if (con == null)
+            {
+                return;
+            }
+            else
+            {
+                string query = "SELECT * FROM tblBooks";
+                SqlCommand cmd = new SqlCommand(query, con.Con);
+                SqlDataReader sdr = cmd.ExecuteReader();
+
+                //SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM tblBooks", con.conString);
+
+                if (sdr.HasRows)
+                {
+                    DataTable dt = new DataTable();
+                    dt.Load(sdr);
+                    gridDataLoading.ItemsSource = sdr;
+                    //sda.Fill(dt);
+                    //gridDataLoading.ItemsSource = dt;
+                }
+                con.conclose();
+            }
+
+            
+        }
+
+        private void btnUserWindow_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnbooksWindow_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAuthorWindow_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnborrowerWindow_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCourseWindow_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnTransWindow_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 

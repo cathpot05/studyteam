@@ -38,10 +38,14 @@ namespace SampleSystem
             }else
             {
                 Console.WriteLine("Successfully Connected");
-                SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM tblUsers WHERE username = '"+ txtUsername.Text +"' and password = '"+ txtPassword.Password +"' ", con.Con);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM tblUsers WHERE username = @username and password = @password ", con.Con);
+                cmd.Parameters.AddWithValue("@username", txtUsername.Text);
+                cmd.Parameters.AddWithValue("@password", txtPassword.Password);
+
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
-                if(sda.Fill(dt) > 0)
+                if (sda.Fill(dt) > 0)
                 {
                     Console.WriteLine("Valid Account");
                     con.conclose();
@@ -52,7 +56,18 @@ namespace SampleSystem
                 {
                     Console.WriteLine("Invalid Account");
                 }
-                
+
+
+                //SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM tblUsers WHERE username = '"+ txtUsername.Text +"' and password = '"+ txtPassword.Password +"' ", con.Con);
+                //parametarized
+                //string sql = "SELECT * FROM tblUsers WHERE username = @username and password = @password ";
+                //using (SqlCommand cmd = new SqlCommand(sql, con.Con))
+                //{
+                //    var acctParam = new SqlParameter("username", SqlDbType.VarChar);
+                //    acctParam.Value = txtUsername.Text;
+                //    cmd.Parameters.Add(acctParam);
+                //    var results = cmd.ExecuteReader();
+                //}
             }
         }
     }

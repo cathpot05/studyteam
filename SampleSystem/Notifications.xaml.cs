@@ -37,7 +37,7 @@ namespace SampleSystem
                 string query = "SELECT COUNT(*) as 'count' FROM tblTransactions WHERE status = 0";
                 SqlCommand cmd = new SqlCommand(query, con.Con);
                 SqlDataReader sdr = cmd.ExecuteReader();
-                while (sdr.Read())
+                if (sdr.Read())
                 {
                     string unreturned = sdr["count"].ToString();
                     txtUnreturnedbook.Text = "Unreturned books: " + unreturned;

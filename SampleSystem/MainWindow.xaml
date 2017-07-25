@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SampleSystem"
         mc:Ignorable="d"
-        Title="Sample System" Height="350" Width="525" WindowStartupLocation="CenterScreen">
+        Title="Sample System" Height="350" Width="525" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Window.Resources>
         <local:MarginConverter x:Key="marginConverter" Margin="Right" Multiplier="-1"/>
 
@@ -28,7 +28,12 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid x:Name="LoadData" Grid.Column="0">
-
+                    <StackPanel Orientation="Vertical" Margin="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBox x:Name="txtSearch" FontFamily="Century Gothic" Width="270" Text="Search Here.."/>
+                        <DataGrid x:Name="gridDataLoading" Width="290" Height="170" FontFamily="Century Gothic" Margin="0 5 0 0" HorizontalGridLinesBrush="#FF688CAF" VerticalGridLinesBrush="#FF688CAF">
+                            
+                        </DataGrid>
+                    </StackPanel>
                 </Grid>
                 <Grid  Grid.Column="1">
                     <Grid.RowDefinitions>
@@ -70,8 +75,9 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Orientation="Vertical" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button x:Name="btnUserWindow" Width="70" Height="70" Content="" BorderBrush="Transparent">
+
+                <StackPanel  Orientation="Vertical" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button x:Name="btnUserWindow" Width="70" Height="70" Content="" BorderBrush="Transparent" Click="btnUserWindow_Click">
                         <Button.Background>
                             <ImageBrush ImageSource="Images\settings.png"></ImageBrush>
                         </Button.Background>
@@ -80,7 +86,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button x:Name="btnbooksWindow" Width="70" Height="70" BorderBrush="Transparent">
+                    <Button x:Name="btnbooksWindow" Width="70" Height="70" BorderBrush="Transparent" Click="btnbooksWindow_Click">
                         <Button.Background>
                             <ImageBrush ImageSource="Images\book.png"></ImageBrush>
                         </Button.Background>
@@ -89,7 +95,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button x:Name="btnAuthorWindow" Width="70" Height="70" BorderBrush="Transparent">
+                    <Button x:Name="btnAuthorWindow" Width="70" Height="70" BorderBrush="Transparent" Click="btnAuthorWindow_Click">
                         <Button.Background>
                             <ImageBrush ImageSource="Images\pen.png"></ImageBrush>
                         </Button.Background>
@@ -98,7 +104,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button x:Name="btnborrowerWindow" Width="70" Height="70" BorderBrush="Transparent">
+                    <Button x:Name="btnborrowerWindow" Width="70" Height="70" BorderBrush="Transparent" Click="btnborrowerWindow_Click">
                         <Button.Background>
                             <ImageBrush ImageSource="Images\users.png"></ImageBrush>
                         </Button.Background>
@@ -107,7 +113,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button x:Name="btnCourseWindow" Width="70" Height="70" BorderBrush="Transparent">
+                    <Button x:Name="btnCourseWindow" Width="70" Height="70" BorderBrush="Transparent" Click="btnCourseWindow_Click">
                         <Button.Background>
                             <ImageBrush ImageSource="Images\texteditor.png"></ImageBrush>
                         </Button.Background>
@@ -116,7 +122,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button x:Name="btnTransWindow" Width="70" Height="70" BorderBrush="Transparent">
+                    <Button x:Name="btnTransWindow" Width="70" Height="70" BorderBrush="Transparent" Click="btnTransWindow_Click">
                         <Button.Background>
                             <ImageBrush ImageSource="Images\filemanager.png"></ImageBrush>
                         </Button.Background>
