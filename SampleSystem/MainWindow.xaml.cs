@@ -89,20 +89,35 @@ namespace SampleSystem
             }
             else
             {
-                string query = "SELECT * FROM tblBooks";
+                //SELECT A.*, (B.author_fname + ' ' + B.author_lname) AS Author FROM tblBooks A INNER JOIN tblAuthor B ON A.bookauthor_id = B.authorid
+                string query = "SELECT A.*, (B.author_fname + ' ' + B.author_lname) AS Author FROM tblBooks A INNER JOIN tblAuthor B ON A.bookauthor_id = B.authorid";
                 SqlCommand cmd = new SqlCommand(query, con.Con);
-                SqlDataReader sdr = cmd.ExecuteReader();
+                //SqlDataReader sdr = cmd.ExecuteReader();
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                
+                //if (sdr.HasRows)
+                //if(sda.Fill(dt) > 0)
+                //{
+                    Console.WriteLine(sda.Fill(dt));
+                    //Console.WriteLine(dt.DefaultView.ToTable(true, "bookid", "bookauthorid"));
+                    //  DataTable dt = new DataTable();
+                    //dt.Clear();
+                    //gridDataLoading.ItemsSource = dt.DefaultView;
+                    gridDataLoading.DataContext = dt.DefaultView;
+                    gridDataLoading.Columns[0].Visibility = Visibility.Collapsed;
+                    gridDataLoading.Columns[2].Visibility = Visibility.Collapsed;
+                    gridDataLoading.Columns[1].Header = "Book Title";
+                    gridDataLoading.Columns[3].Header = "Date Published";
+                    gridDataLoading.Columns[4].Header = "Quantity";
+                    gridDataLoading.Columns[5].Header = "Stocks";
+                    gridDataLoading.CanUserAddRows = false;
 
-                //SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM tblBooks", con.conString);
-
-                if (sdr.HasRows)
-                {
-                    DataTable dt = new DataTable();
-                    dt.Load(sdr);
-                    gridDataLoading.ItemsSource = sdr;
                     //sda.Fill(dt);
                     //gridDataLoading.ItemsSource = dt;
-                }
+                //}
                 con.conclose();
             }
 
