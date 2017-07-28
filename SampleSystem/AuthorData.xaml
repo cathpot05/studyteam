@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="SampleSystem.AuthorData"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SampleSystem"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Height="220" Width="515" Loaded="UserControl_Loaded">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="Black" Offset="0"/>
+                <GradientStop Color="#FFBFC5CD" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <!--<RowDefinition/>-->
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="350"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="1" Margin="5 5 5 5">
+                    <TextBlock Text="Author Configurations" Foreground="WhiteSmoke" FontFamily="Monotype Corsiva" Margin="0 0 0 5" HorizontalAlignment="Center"/>
+                    <Grid>
+                        <TextBlock x:Name="txtUASearchToolTip" Text="Search Here.." FontFamily="Century Gothic" Panel.ZIndex="2" Foreground="LightGray" Margin="3 3 0 0" Visibility="Visible" FontSize="10"/>
+                        <TextBox x:Name="txtUASearch" Margin="0 0 0 5" FontFamily="Century Gothic" GotFocus="txtUASearch_GotFocus" LostFocus="txtUASearch_LostFocus"/>
+                    </Grid>
+                    <DataGrid x:Name="dgAuthor" FontFamily="Century Gothic" Height="160" HorizontalGridLinesBrush="#FF688CAF" VerticalGridLinesBrush="#FF688CAF" ItemsSource="{Binding}">
+                        <DataGrid.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </DataGrid.Background>
+                    </DataGrid>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Margin="5 5 5 5" Orientation="Vertical"  VerticalAlignment="Center">
+                    <TextBlock Text="Author First Name:" FontFamily="Century Gothic" Foreground="WhiteSmoke" FontSize="10"/>
+                    <TextBox x:Name="txtAuthorFname" FontFamily="Century Gothic" Margin="0 0 0 5"/>
+
+                    <TextBlock Text="Author Last Name:" FontFamily="Century Gothic" Foreground="WhiteSmoke" FontSize="10"/>
+                    <TextBox x:Name="txtAuthorLname" FontFamily="Century Gothic" Margin="0 0 0 10"/>
+                    
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Vertical">
+                            <Button x:Name="btnA_Add" Width="40" Height="40" Content="" BorderBrush="Transparent">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images\crud_add.png"></ImageBrush>
+                                </Button.Background>
+                            </Button>
+                            <TextBlock Text="Add" FontFamily="Century Gothic" FontSize="10" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Button x:Name="btnA_Edit" Width="40" Height="40" Content="" BorderBrush="Transparent">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images\crud_edit.png"></ImageBrush>
+                                </Button.Background>
+                            </Button>
+                            <TextBlock Text="Modify" FontFamily="Century Gothic" FontSize="10" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Button x:Name="btnA_Delete" Width="40" Height="40" Content="" BorderBrush="Transparent">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images\crud_delete.png"></ImageBrush>
+                                </Button.Background>
+                            </Button>
+                            <TextBlock Text="Delete" FontFamily="Century Gothic" FontSize="10" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Button x:Name="btnA_Save" Width="40" Height="40" Content="" BorderBrush="Transparent">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images\crud_save.png"></ImageBrush>
+                                </Button.Background>
+                            </Button>
+                            <TextBlock Text="Save" FontFamily="Century Gothic" FontSize="10" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

@@ -26,7 +26,7 @@ namespace SampleSystem
             }
             catch (Exception ex) {
                 MessageBox.Show("Please check the connection.");
-                Console.Write("Cannot connect. Check the connection");
+                Console.Write("Cannot connect. Check the connection" + ex.Message);
             }
         }
 

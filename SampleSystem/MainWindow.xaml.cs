@@ -15,6 +15,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace SampleSystem
 {
@@ -23,9 +24,22 @@ namespace SampleSystem
     /// </summary>
     public partial class MainWindow : Window
     {
+        //private bool BookVisible = false;
+        //private bool AuthorVisible = false;
+        //private bool CourseVisible = false;
+        //private bool AcctVisible = false;
+        //private bool TransactionVisible = false;
+        //private bool BarrowerVisible = false;
+        private string checker = "";
+
         public MainWindow()
         {
             InitializeComponent();
+            
+            DispatcherTimer time = new DispatcherTimer();
+            time.Interval = TimeSpan.FromSeconds(1);
+            time.Tick += timer_tick;
+            time.Start();
 
             //foreach (Button wrapButton in second_row_grid.Children)
             //{
@@ -40,15 +54,58 @@ namespace SampleSystem
             //                 break;
             //        }
             //    };
-                
+
             //}
         }
+
+        private void closeAll()
+        {
+            //BookVisible = false;
+            //AuthorVisible = false;
+            //CourseVisible = false;
+            //AcctVisible = false;
+            //TransactionVisible = false;
+            //BarrowerVisible = false;
+        }
+
+        private void storyBoardExit()
+        {
+            switch (checker)
+            {
+                case "Books":
+                    menuslide(false, "sbShowBookMenu", "sbHideBookMenu", BooksData_UC);
+                    break;
+                case "Author":
+                    menuslide(false, "sbShowAuthorMenu", "sbHideAuthorMenu", AuthorData_UC);
+                    break;
+                case "Course":
+
+                    break;
+                case "Acct":
+
+                    break;
+                case "Trans":
+
+                    break;
+                case "Barrower":
+
+                    break;
+                default:
+                        checker = "";
+                        menuslide(false, "sbShowBookMenu", "sbHideBookMenu", BooksData_UC);
+                        menuslide(false, "sbShowAuthorMenu", "sbHideAuthorMenu", AuthorData_UC);
+                    break;
+            }
+        }
+
+
 
         private void btnRightMenuShow_Click(object sender, RoutedEventArgs e)
         {
             menuslide(true, "sbShowRightMenu", "sbHideRightMenu", Notifs);
             btnRightMenuShow.Visibility = System.Windows.Visibility.Hidden;
             btnRightMenuHide.Visibility = System.Windows.Visibility.Visible;
+            closeAll();
         }
 
         private void menuslide(bool isVisible, string x, string y, Control z)
@@ -56,7 +113,7 @@ namespace SampleSystem
             //throw new NotImplementedException();
 
             string[] p = new string[] { x, y };
-             Storyboard sb = Resources[p[isVisible ? 0 : 1]] as Storyboard;
+            Storyboard sb = Resources[p[isVisible ? 0 : 1]] as Storyboard;
             sb.Begin(z);
             //if (isVisible)
             //{
@@ -113,57 +170,55 @@ namespace SampleSystem
             
         }
 
-        private void onLoadAuthor()
-        {
-            SqlConnect con = new SqlConnect();
-            con.conOpen();
-            if(con == null)
-            {
-                return;
-            }
-            else
-            {
-
-                string q = "SELECT * FROM tblAuthor";
-                SqlCommand cmd = new SqlCommand(q, con.Con);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataSet ds = new DataSet();
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                gridDataLoading.DataContext = dt.DefaultView;
-                gridDataLoading.Columns[0].Visibility = Visibility.Collapsed;
-
-            }
-        }
+     
 
         private void btnUserWindow_Click(object sender, RoutedEventArgs e)
         {
-
+            closeAll();
         }
 
         private void btnbooksWindow_Click(object sender, RoutedEventArgs e)
         {
+            storyBoardExit();
+            checker = "Books";
             menuslide(true, "sbShowBookMenu", "sbHideBookMenu", BooksData_UC);
         }
 
         private void btnAuthorWindow_Click(object sender, RoutedEventArgs e)
         {
+            storyBoardExit();
+            checker = "Author";
+            menuslide(true, "sbShowAuthorMenu", "sbHideAuthorMenu", AuthorData_UC);
 
         }
 
         private void btnborrowerWindow_Click(object sender, RoutedEventArgs e)
         {
-
+            storyBoardExit();
+            checker = "Barrower";
         }
 
         private void btnCourseWindow_Click(object sender, RoutedEventArgs e)
         {
-
+            storyBoardExit();
+            checker = "Course";
         }
 
         private void btnTransWindow_Click(object sender, RoutedEventArgs e)
         {
+            storyBoardExit();
+            checker = "Trans";
+        }
 
+        void timer_tick(object sender, EventArgs e)
+        {
+            txt_time.Text = DateTime.Now.ToLongTimeString();
+        }
+
+        private void btnHome_Click(object sender, RoutedEventArgs e)
+        {
+            storyBoardExit();
+            checker = "";
         }
     }
 
@@ -193,5 +248,7 @@ namespace SampleSystem
         {
             return null;
         }
+
+        
     }
 }

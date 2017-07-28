@@ -1,6 +1,8 @@
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\bin\Debug\SampleSystem.exe.config
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\bin\Debug\SampleSystem.exe
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\bin\Debug\SampleSystem.pdb
+C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\AuthorData.g.cs
+C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\BooksData.g.cs
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\LoginForm.g.cs
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\LoginUC.g.cs
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\MainWindow.g.cs
@@ -9,6 +11,8 @@ C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\App.g
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\SampleSystem_MarkupCompile.cache
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\SampleSystem_MarkupCompile.lref
+C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\AuthorData.baml
+C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\BooksData.baml
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\LoginForm.baml
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\LoginUC.baml
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\MainWindow.baml
@@ -18,6 +22,3 @@ C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\Sampl
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\SampleSystem.csproj.GenerateResource.Cache
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\SampleSystem.exe
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\SampleSystem.pdb
-C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\SampleSystem.csprojResolveAssemblyReference.cache
-C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\BooksData.g.cs
-C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\BooksData.baml
