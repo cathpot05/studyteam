@@ -8,7 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/l_arrow.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/r_arrow.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/crud_add.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/crud_delete.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/crud_edit.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/crud_save.png")]
 
 

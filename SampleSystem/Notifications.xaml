@@ -6,7 +6,13 @@
              xmlns:local="clr-namespace:SampleSystem"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
-    <Grid Background="LightSlateGray">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="White" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="0 0 0 0">
             <TextBlock Text="Notifications:" FontFamily="Century Gothic" FontWeight="Bold" Foreground="Red"/>
             <TextBlock x:Name="txtUnreturnedbook" Text="No Data" FontFamily="Century Gothic" FontSize="10"/>

@@ -46,32 +46,36 @@ namespace SampleSystem
 
         private void btnRightMenuShow_Click(object sender, RoutedEventArgs e)
         {
-            menuslide(true);
+            menuslide(true, "sbShowRightMenu", "sbHideRightMenu", Notifs);
+            btnRightMenuShow.Visibility = System.Windows.Visibility.Hidden;
+            btnRightMenuHide.Visibility = System.Windows.Visibility.Visible;
         }
 
-        private void menuslide(bool isVisible)
+        private void menuslide(bool isVisible, string x, string y, Control z)
         {
             //throw new NotImplementedException();
 
-            string[] p = new string[] { "sbShowRightMenu", "sbHideRightMenu" };
+            string[] p = new string[] { x, y };
              Storyboard sb = Resources[p[isVisible ? 0 : 1]] as Storyboard;
-            sb.Begin(Notifs);
-            if (isVisible)
-            {
-                btnRightMenuShow.Visibility = System.Windows.Visibility.Hidden;
-                btnRightMenuHide.Visibility = System.Windows.Visibility.Visible;
-            }
-            else
-            {
-                btnRightMenuShow.Visibility = System.Windows.Visibility.Visible;
-                btnRightMenuHide.Visibility = System.Windows.Visibility.Hidden;
-            }
+            sb.Begin(z);
+            //if (isVisible)
+            //{
+            //    btnRightMenuShow.Visibility = System.Windows.Visibility.Hidden;
+            //    btnRightMenuHide.Visibility = System.Windows.Visibility.Visible;
+            //}
+            //else
+            //{
+            //    btnRightMenuShow.Visibility = System.Windows.Visibility.Visible;
+            //    btnRightMenuHide.Visibility = System.Windows.Visibility.Hidden;
+            //}
         }
 
         private void btnRightMenuHide_Click(object sender, RoutedEventArgs e)
         {
-            menuslide(false);
+            menuslide(false, "sbShowRightMenu", "sbHideRightMenu", Notifs);
             Console.WriteLine("btnhide was click");
+            btnRightMenuShow.Visibility = System.Windows.Visibility.Visible;
+            btnRightMenuHide.Visibility = System.Windows.Visibility.Hidden;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -139,7 +143,7 @@ namespace SampleSystem
 
         private void btnbooksWindow_Click(object sender, RoutedEventArgs e)
         {
-
+            menuslide(true, "sbShowBookMenu", "sbHideBookMenu", BooksData_UC);
         }
 
         private void btnAuthorWindow_Click(object sender, RoutedEventArgs e)

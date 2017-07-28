@@ -19,3 +19,5 @@ C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\Sampl
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\SampleSystem.exe
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\SampleSystem.pdb
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\SampleSystem.csprojResolveAssemblyReference.cache
+C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\BooksData.g.cs
+C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\BooksData.baml
