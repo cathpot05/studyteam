@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Data.SqlClient;
 using System.Data;
+using System;
 
 namespace SampleSystem
 {
@@ -32,16 +33,24 @@ namespace SampleSystem
             else
             {
 
-                string q = "SELECT * , (author_fname + '  ' + author_lname )as Author FROM tblAuthor";
-                SqlCommand cmd = new SqlCommand(q, con.Con);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataSet ds = new DataSet();
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                dgAuthor.DataContext = dt.DefaultView;
-                dgAuthor.Columns[0].Visibility = Visibility.Collapsed;
-                dgAuthor.Columns[1].Visibility = Visibility.Collapsed;
-                dgAuthor.Columns[2].Visibility = Visibility.Collapsed;
+                try
+                {
+                    string q = "SELECT * , (author_fname + ' ' + author_lname )as Author FROM tblAuthor";
+                    SqlCommand cmd = new SqlCommand(q, con.Con);
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataSet ds = new DataSet();
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    dgAuthor.ItemsSource = dt.DefaultView;
+                    dgAuthor.Columns[0].Visibility = Visibility.Collapsed;
+                    dgAuthor.Columns[1].Visibility = Visibility.Collapsed;
+                    dgAuthor.Columns[2].Visibility = Visibility.Collapsed;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
 
             }
             con.conclose();

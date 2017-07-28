@@ -1,6 +1,7 @@
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\bin\Debug\SampleSystem.exe.config
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\bin\Debug\SampleSystem.exe
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\bin\Debug\SampleSystem.pdb
+C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\SampleSystem.csprojResolveAssemblyReference.cache
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\AuthorData.g.cs
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\BooksData.g.cs
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\LoginForm.g.cs

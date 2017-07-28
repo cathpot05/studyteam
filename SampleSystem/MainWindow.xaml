@@ -7,13 +7,25 @@
         mc:Ignorable="d"
         Title="Sample System" Height="350" Width="525" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Window.Resources>
-        <local:MarginConverter x:Key="marginConverter" Margin="Right" Multiplier="-1"/>
 
+        <Style x:Key="BtnStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <local:MarginConverter x:Key="marginConverter" Margin="Right" Multiplier="-1"/>
+        <!--Right Menu Click-->
         <Storyboard x:Key="sbShowRightMenu">
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=Notifs, Path=ItemSize, Converter={StaticResource marginConverter}}" To="0 0 0 0" DecelerationRatio="0.9" Duration="0:0:0.5"/>
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=Notifs, Path=ItemSize, Converter={StaticResource marginConverter}}" To="0 0 0 0" DecelerationRatio="0.9" Duration="0:0:0.2"/>
         </Storyboard>
         <Storyboard x:Key="sbHideRightMenu">
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=Notifs, Path=ItemSize, Converter={StaticResource marginConverter}}" To="190 0 -190 0" AccelerationRatio="0.9" Duration="0:0:0.5"/>
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=Notifs, Path=ItemSize, Converter={StaticResource marginConverter}}" To="190 0 -190 0" AccelerationRatio="0.9" Duration="0:0:0.2"/>
         </Storyboard>
         
         <!--Books Data Animations-->
@@ -79,26 +91,28 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                         </Grid>-->
-                        <Calendar>
-                            <Calendar.Background>
-                                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                                    <GradientStop Color="#FFE4EAF0" Offset="0"/>
-                                    <GradientStop Color="#FFECF0F4" Offset="0.16"/>
-                                    <GradientStop Color="#FFFCFCFD" Offset="0.16"/>
-                                    <GradientStop Color="#FF7DC5E6" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Calendar.Background>
-                        </Calendar>
+                        <Viewbox>
+                            <Calendar>
+                                <Calendar.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFE4EAF0" Offset="0"/>
+                                        <GradientStop Color="#FFECF0F4" Offset="0.16"/>
+                                        <GradientStop Color="#FFFCFCFD" Offset="0.16"/>
+                                        <GradientStop Color="#FF7DC5E6" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Calendar.Background>
+                            </Calendar>
+                        </Viewbox>
                     </Grid>
                     
                     <Grid Grid.Row="1">
                         <TextBlock x:Name="txt_time" Text="Time" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="22" FontFamily="Century Gothic" Foreground="WhiteSmoke"/>
-                        <Button x:Name="btnRightMenuShow" Width="30" Height="68" Content="" HorizontalAlignment="Right" Click="btnRightMenuShow_Click" BorderBrush="Transparent">
+                        <Button x:Name="btnRightMenuShow" Width="30" Height="68" Content="" HorizontalAlignment="Right" Click="btnRightMenuShow_Click" BorderBrush="Transparent" Style="{StaticResource BtnStyle}">
                             <Button.Background>
                                 <ImageBrush ImageSource="Images/l_arrow.png"/>
                             </Button.Background>
                         </Button>
-                        <Button x:Name="btnRightMenuHide" Panel.ZIndex="2" Width="30" Height="68" Content="" HorizontalAlignment="Right" Visibility="Hidden" BorderBrush="Transparent" Click="btnRightMenuHide_Click">
+                        <Button x:Name="btnRightMenuHide" Panel.ZIndex="2" Width="30" Height="68" Content="" HorizontalAlignment="Right" Visibility="Hidden" BorderBrush="Transparent" Click="btnRightMenuHide_Click" Style="{StaticResource BtnStyle}">
                             <Button.Background>
                                 <ImageBrush ImageSource="Images/r_arrow.png"/>
                             </Button.Background>
@@ -124,7 +138,7 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel  Orientation="Vertical" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button x:Name="btnUserWindow" Width="70" Height="70" Content="" BorderBrush="Transparent" Click="btnUserWindow_Click">
+                    <Button x:Name="btnUserWindow" Width="70" Height="70" Content="" BorderBrush="Transparent" Click="btnUserWindow_Click" Style="{StaticResource BtnStyle}">
                         <Button.Background>
                             <ImageBrush ImageSource="Images\settings.png"></ImageBrush>
                         </Button.Background>
@@ -133,7 +147,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button x:Name="btnbooksWindow" Width="70" Height="70" BorderBrush="Transparent" Click="btnbooksWindow_Click">
+                    <Button x:Name="btnbooksWindow" Width="70" Height="70" BorderBrush="Transparent" Click="btnbooksWindow_Click" Style="{StaticResource BtnStyle}">
                         <Button.Background>
                             <ImageBrush ImageSource="Images\book.png"></ImageBrush>
                         </Button.Background>
@@ -142,7 +156,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button x:Name="btnAuthorWindow" Width="70" Height="70" BorderBrush="Transparent" Click="btnAuthorWindow_Click">
+                    <Button x:Name="btnAuthorWindow" Width="70" Height="70" BorderBrush="Transparent" Click="btnAuthorWindow_Click" Style="{StaticResource BtnStyle}">
                         <Button.Background>
                             <ImageBrush ImageSource="Images\pen.png"></ImageBrush>
                         </Button.Background>
@@ -150,7 +164,7 @@
                     <Label Content="Author" HorizontalAlignment="Center" FontFamily="Century Gothic" FontWeight="Bold"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button x:Name="btnHome" Width="70" Height="70" BorderBrush="Transparent" Click="btnHome_Click">
+                    <Button x:Name="btnHome" Width="70" Height="70" BorderBrush="Transparent" Click="btnHome_Click" Style="{StaticResource BtnStyle}">
                         <Button.Background>
                             <ImageBrush ImageSource="Images\home.png"></ImageBrush>
                         </Button.Background>
@@ -159,7 +173,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button x:Name="btnborrowerWindow" Width="70" Height="70" BorderBrush="Transparent" Click="btnborrowerWindow_Click">
+                    <Button x:Name="btnborrowerWindow" Width="70" Height="70" BorderBrush="Transparent" Click="btnborrowerWindow_Click" Style="{StaticResource BtnStyle}">
                         <Button.Background>
                             <ImageBrush ImageSource="Images\users.png"></ImageBrush>
                         </Button.Background>
@@ -168,7 +182,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button x:Name="btnCourseWindow" Width="70" Height="70" BorderBrush="Transparent" Click="btnCourseWindow_Click">
+                    <Button x:Name="btnCourseWindow" Width="70" Height="70" BorderBrush="Transparent" Click="btnCourseWindow_Click" Style="{StaticResource BtnStyle}">
                         <Button.Background>
                             <ImageBrush ImageSource="Images\texteditor.png"></ImageBrush>
                         </Button.Background>
@@ -177,7 +191,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button x:Name="btnTransWindow" Width="70" Height="70" BorderBrush="Transparent" Click="btnTransWindow_Click">
+                    <Button x:Name="btnTransWindow" Width="70" Height="70" BorderBrush="Transparent" Click="btnTransWindow_Click" Style="{StaticResource BtnStyle}">
                         <Button.Background>
                             <ImageBrush ImageSource="Images\filemanager.png"></ImageBrush>
                         </Button.Background>
