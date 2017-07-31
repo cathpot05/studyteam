@@ -32,7 +32,7 @@
         <Storyboard x:Key="sbHideRightMenu">
             <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=Notifs, Path=ItemSize, Converter={StaticResource marginConverter}}" To="190 0 -190 0" AccelerationRatio="0.9" Duration="0:0:0.2"/>
         </Storyboard>
-        
+      
         <!--Books Data Animations-->
         <Storyboard x:Key="sbShowBookMenu">
             <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=BooksData_UC, Path=ItemSize, Converter={StaticResource marginConverter}}" To="0 0 0 0" DecelerationRatio="0.9" Duration="0:0:0.5"/>
