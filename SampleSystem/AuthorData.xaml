@@ -28,15 +28,20 @@
                     <TextBlock Text="Author Configurations" Foreground="WhiteSmoke" FontFamily="Monotype Corsiva" Margin="0 0 0 5" HorizontalAlignment="Center"/>
                     <Grid>
                         <TextBlock x:Name="txtUASearchToolTip" Text="Search Here.." FontFamily="Century Gothic" Panel.ZIndex="2" Foreground="LightGray" Margin="3 3 0 0" Visibility="Visible" FontSize="10"/>
-                        <TextBox x:Name="txtUASearch" Margin="0 0 0 5" FontFamily="Century Gothic" GotFocus="txtUASearch_GotFocus" LostFocus="txtUASearch_LostFocus"/>
+                        <TextBox x:Name="txtUASearch" Margin="0 0 0 5" FontFamily="Century Gothic" GotFocus="txtUASearch_GotFocus" LostFocus="txtUASearch_LostFocus" TextChanged="txtUASearch_TextChanged"/>
                     </Grid>
-                    <DataGrid x:Name="dgAuthor" FontFamily="Century Gothic" Height="160" HorizontalGridLinesBrush="#FF688CAF" VerticalGridLinesBrush="#FF688CAF" ItemsSource="{Binding}">
+                    <DataGrid x:Name="dgAuthor" FontFamily="Century Gothic" Height="160" HorizontalGridLinesBrush="#FF688CAF" VerticalGridLinesBrush="#FF688CAF" ItemsSource="{Binding}" MouseLeftButtonUp="dgAuthor_MouseLeftButtonUp">
                         <DataGrid.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="Black" Offset="0"/>
                                 <GradientStop Color="White" Offset="1"/>
                             </LinearGradientBrush>
                         </DataGrid.Background>
+                        <!--<DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <EventSetter Event="PreviewMouseDown" Handler="getTheValue"></EventSetter>
+                            </Style>
+                        </DataGrid.CellStyle>-->
                     </DataGrid>
                 </StackPanel>
                 <StackPanel Grid.Column="0" Margin="5 5 5 5" Orientation="Vertical"  VerticalAlignment="Center">
@@ -48,7 +53,7 @@
                     
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <StackPanel Orientation="Vertical">
-                            <Button x:Name="btnA_Add" Width="40" Height="40" Content="" BorderBrush="Transparent">
+                            <Button x:Name="btnA_Add" Width="40" Height="40" Content="" BorderBrush="Transparent" Click="btnA_Add_Click">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Images\crud_add.png"></ImageBrush>
                                 </Button.Background>
@@ -57,7 +62,7 @@
                         </StackPanel>
 
                         <StackPanel Orientation="Vertical">
-                            <Button x:Name="btnA_Edit" Width="40" Height="40" Content="" BorderBrush="Transparent">
+                            <Button x:Name="btnA_Edit" Width="40" Height="40" Content="" BorderBrush="Transparent" Click="btnA_Edit_Click">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Images\crud_edit.png"></ImageBrush>
                                 </Button.Background>
@@ -66,7 +71,7 @@
                         </StackPanel>
 
                         <StackPanel Orientation="Vertical">
-                            <Button x:Name="btnA_Delete" Width="40" Height="40" Content="" BorderBrush="Transparent">
+                            <Button x:Name="btnA_Delete" Width="40" Height="40" Content="" BorderBrush="Transparent" Click="btnA_Delete_Click">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Images\crud_delete.png"></ImageBrush>
                                 </Button.Background>
@@ -75,7 +80,7 @@
                         </StackPanel>
 
                         <StackPanel Orientation="Vertical">
-                            <Button x:Name="btnA_Save" Width="40" Height="40" Content="" BorderBrush="Transparent">
+                            <Button x:Name="btnA_Save" Width="40" Height="40" Content="" BorderBrush="Transparent" Click="btnA_Save_Click">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Images\crud_save.png"></ImageBrush>
                                 </Button.Background>

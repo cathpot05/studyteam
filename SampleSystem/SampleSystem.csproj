@@ -61,6 +61,7 @@
     <Compile Include="BooksData.xaml.cs">
       <DependentUpon>BooksData.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CrudConfiguration.cs" />
     <Compile Include="Notifications.xaml.cs">
       <DependentUpon>Notifications.xaml</DependentUpon>
     </Compile>

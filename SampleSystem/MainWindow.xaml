@@ -18,6 +18,11 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#adadad"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <local:MarginConverter x:Key="marginConverter" Margin="Right" Multiplier="-1"/>
         <!--Right Menu Click-->
