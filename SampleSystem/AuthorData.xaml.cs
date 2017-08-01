@@ -142,9 +142,6 @@ namespace SampleSystem
 
         private void modifyTrans()
         {
-            //var editImg = new ImageBrush();
-            //editImg.ImageSource = new BitmapImage(new Uri(@"Images\crud_edit.png", UriKind.Relative));
-            //btnA_Edit.Background = editImg;
             btnA_Edit.Background = (ImageBrush)Resources["EditNormal"];
             btnA_Delete.Background = (ImageBrush)Resources["DeleteNormal"];
             btnA_Save.Background = (ImageBrush)Resources["SavePress"];

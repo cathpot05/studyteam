@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/crud_add_disabled.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/settings1.png")]
 
 

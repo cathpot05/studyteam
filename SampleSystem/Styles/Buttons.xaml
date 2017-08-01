@@ -21,15 +21,34 @@
         </Style.Triggers>
     </Style>
 
-    <!--Enabled BG of Buttons-->
-    <ImageBrush x:Key="AddNormal" ImageSource="Images\crud_add.png"/>
-    <ImageBrush x:Key="EditNormal" ImageSource="Images\crud_edit.png"/>
-    <ImageBrush x:Key="DeleteNormal" ImageSource="Images\crud_delete.png"/>
-    <ImageBrush x:Key="SaveNormal" ImageSource="Images\crud_save.png"/>
+    <!--Enabled BG of Buttons CRUD-->
+    <ImageBrush x:Key="AddNormal" ImageSource="..\Images\crud_add.png"/>
+    <ImageBrush x:Key="EditNormal" ImageSource="..\Images\crud_edit.png"/>
+    <ImageBrush x:Key="DeleteNormal" ImageSource="..\Images\crud_delete.png"/>
+    <ImageBrush x:Key="SaveNormal" ImageSource="..\Images\crud_save.png"/>
+    
+    <!--Enabled BG Buttons Main-->
+    <ImageBrush x:Key="Settings" ImageSource="..\Images\settings.png"/>
+    <ImageBrush x:Key="Book" ImageSource="..\Images\book.png"/>
+    <ImageBrush x:Key="Author" ImageSource="..\Images\pen.png"/>
+    <ImageBrush x:Key="Home" ImageSource="..\Images\home.png"/>
+    <ImageBrush x:Key="Borrower" ImageSource="..\Images\users.png"/>
+    <ImageBrush x:Key="Course" ImageSource="..\Images\texteditor.png"/>
+    <ImageBrush x:Key="Trans" ImageSource="..\Images\filemanager.png"/>
+
+    <!--Hover BG Buttons Main-->
+    <ImageBrush x:Key="Settings1" ImageSource="..\Images\settings1.png"/>
+    <ImageBrush x:Key="Book1" ImageSource="..\Images\book1.png"/>
+    <ImageBrush x:Key="Author1" ImageSource="..\Images\pen1.png"/>
+    <ImageBrush x:Key="Home1" ImageSource="..\Images\home1.png"/>
+    <ImageBrush x:Key="Borrower1" ImageSource="..\Images\users1.png"/>
+    <ImageBrush x:Key="Course1" ImageSource="..\Images\texteditor1.png"/>
+    <ImageBrush x:Key="Trans1" ImageSource="..\Images\filemanager1.png"/>
+
 
     <!--Disables Buttons-->
-    <ImageBrush x:Key="AddPress" ImageSource="Images\crud_add_disabled.png"/>
-    <ImageBrush x:Key="EditPress" ImageSource="Images\crud_edit_disabled.png"/>
-    <ImageBrush x:Key="DeletePress" ImageSource="Images\crud_delete_disabled.png"/>
-    <ImageBrush x:Key="SavePress" ImageSource="Images\crud_save_disabled.png"/>
+    <ImageBrush x:Key="AddPress" ImageSource="..\Images\crud_add_disabled.png"/>
+    <ImageBrush x:Key="EditPress" ImageSource="..\Images\crud_edit_disabled.png"/>
+    <ImageBrush x:Key="DeletePress" ImageSource="..\Images\crud_delete_disabled.png"/>
+    <ImageBrush x:Key="SavePress" ImageSource="..\Images\crud_save_disabled.png"/>
 </ResourceDictionary>

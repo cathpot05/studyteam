@@ -38,7 +38,7 @@
                         <TextBlock x:Name="txtUASearchToolTip" Text="Search Here.." FontFamily="Century Gothic" Foreground="LightGray" Margin="20 5 0 0" Visibility="Visible" FontSize="10"/>
                         <TextBox x:Name="txtUASearch" Margin="0 0 0 5" FontFamily="Century Gothic" GotFocus="txtUASearch_GotFocus" LostFocus="txtUASearch_LostFocus" TextChanged="txtUASearch_TextChanged"  Foreground="WhiteSmoke">
                             <TextBox.Background>
-                                <ImageBrush ImageSource="Images/search.png" AlignmentX="Left" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="Images/search.png" AlignmentX="Right" Stretch="Uniform"/>
                             </TextBox.Background>    
                         </TextBox>
                     </Grid>

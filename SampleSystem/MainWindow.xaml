@@ -7,48 +7,41 @@
         mc:Ignorable="d"
         Title="Sample System" Height="350" Width="525" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Buttons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            
+            <local:MarginConverter x:Key="marginConverter" Margin="Right" Multiplier="-1"/>
 
-        <Style x:Key="BtnStyle" TargetType="Button">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Grid Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="BorderBrush" Value="#adadad"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        <local:MarginConverter x:Key="marginConverter" Margin="Right" Multiplier="-1"/>
-        <!--Right Menu Click-->
-        <Storyboard x:Key="sbShowRightMenu">
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=Notifs, Path=ItemSize, Converter={StaticResource marginConverter}}" To="0 0 0 0" DecelerationRatio="0.9" Duration="0:0:0.2"/>
-        </Storyboard>
-        <Storyboard x:Key="sbHideRightMenu">
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=Notifs, Path=ItemSize, Converter={StaticResource marginConverter}}" To="190 0 -190 0" AccelerationRatio="0.9" Duration="0:0:0.2"/>
-        </Storyboard>
-      
-        <!--Books Data Animations-->
-        <Storyboard x:Key="sbShowBookMenu">
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=BooksData_UC, Path=ItemSize, Converter={StaticResource marginConverter}}" To="0 0 0 0" DecelerationRatio="0.9" Duration="0:0:0.5"/>
-        </Storyboard>
-        <Storyboard x:Key="sbHideBookMenu">
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=BooksData_UC, Path=ItemSize, Converter={StaticResource marginConverter}}" To="-525 0 520 0" AccelerationRatio="0.9" Duration="0:0:0.5"/>
-        </Storyboard>
-        
-        
-        <!--Author Data Animations-->
-        <Storyboard x:Key="sbShowAuthorMenu">
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=AuthorData_UC, Path=ItemSize, Converter={StaticResource marginConverter}}" To="0 0 0 0" DecelerationRatio="0.9" Duration="0:0:0.5"/>
-        </Storyboard>
-        <Storyboard x:Key="sbHideAuthorMenu">
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=AuthorData_UC, Path=ItemSize, Converter={StaticResource marginConverter}}" To="525 0 -520 0" AccelerationRatio="0.9" Duration="0:0:0.5"/>
-        </Storyboard>
+            <!--Right Menu Click-->
+            <Storyboard x:Key="sbShowRightMenu">
+                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=Notifs, Path=ItemSize, Converter={StaticResource marginConverter}}" To="0 0 0 0" DecelerationRatio="0.9" Duration="0:0:0.2"/>
+            </Storyboard>
+            <Storyboard x:Key="sbHideRightMenu">
+                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=Notifs, Path=ItemSize, Converter={StaticResource marginConverter}}" To="190 0 -190 0" AccelerationRatio="0.9" Duration="0:0:0.2"/>
+            </Storyboard>
+
+            <!--Books Data Animations-->
+            <Storyboard x:Key="sbShowBookMenu">
+                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=BooksData_UC, Path=ItemSize, Converter={StaticResource marginConverter}}" To="0 0 0 0" DecelerationRatio="0.9" Duration="0:0:0.5"/>
+            </Storyboard>
+            <Storyboard x:Key="sbHideBookMenu">
+                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=BooksData_UC, Path=ItemSize, Converter={StaticResource marginConverter}}" To="-525 0 520 0" AccelerationRatio="0.9" Duration="0:0:0.5"/>
+            </Storyboard>
+
+
+            <!--Author Data Animations-->
+            <Storyboard x:Key="sbShowAuthorMenu">
+                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=AuthorData_UC, Path=ItemSize, Converter={StaticResource marginConverter}}" To="0 0 0 0" DecelerationRatio="0.9" Duration="0:0:0.5"/>
+            </Storyboard>
+            <Storyboard x:Key="sbHideAuthorMenu">
+                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=AuthorData_UC, Path=ItemSize, Converter={StaticResource marginConverter}}" To="525 0 -520 0" AccelerationRatio="0.9" Duration="0:0:0.5"/>
+            </Storyboard>
+
+        </ResourceDictionary>
+       
+     
         
         
     </Window.Resources>

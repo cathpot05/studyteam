@@ -41,31 +41,128 @@ namespace SampleSystem
             time.Tick += timer_tick;
             time.Start();
 
-            //foreach (Button wrapButton in second_row_grid.Children)
-            //{
-            //    Action<string> wrapButtonFunctions = (Buttons) =>
-            //    {
-            //        switch (Buttons)
-            //        {
-            //            case "btnUserWindow":
-            //                {
+            #region Button's Func_Leave Mouse
+            foreach (StackPanel MainPanels in second_row_grid.Children.OfType<StackPanel>())
+            {
+                foreach (Button MainButtons in MainPanels.Children.OfType<Button>())
+                {
+                    Action<string> MainButtonFunctions = (Buttons) =>
+                    {
+                        switch (Buttons)
+                        {
+                            case "btnUserWindow":
+                                {
+                                    btnUserWindow.Background = (ImageBrush)Resources["Settings"];
+                                }
+                                break;
+                            case "btnbooksWindow":
+                                {
+                                    btnbooksWindow.Background = (ImageBrush)Resources["Book"];
+                                }
+                                break;
+                            case "btnAuthorWindow":
+                                {
+                                    btnAuthorWindow.Background = (ImageBrush)Resources["Author"];
+                                }
+                                break;
+                            case "btnHome":
+                                {
+                                    btnHome.Background = (ImageBrush)Resources["Home"];
+                                }
+                                break;
+                            case "btnborrowerWindow":
+                                {
+                                    btnborrowerWindow.Background = (ImageBrush)Resources["Borrower"];
+                                }
+                                break;
+                            case "btnCourseWindow":
+                                {
+                                    btnCourseWindow.Background = (ImageBrush)Resources["Course"];
+                                }
+                                break;
+                            case "btnTransWindow":
+                                {
+                                    btnborrowerWindow.Background = (ImageBrush)Resources["Trans"];
+                                }
+                                break;
+                        }
+                    };
+                    MainButtons.MouseLeave += delegate
+                    {
+                        MainButtonFunctions(MainButtons.Name);
+                    };
 
-            //                }
-            //                 break;
-            //        }
-            //    };
+                    MainButtons.TouchLeave += delegate
+                    {
+                        MainButtonFunctions(MainButtons.Name);
+                    };
+                }
 
-            //}
-        }
 
-        private void closeAll()
-        {
-            //BookVisible = false;
-            //AuthorVisible = false;
-            //CourseVisible = false;
-            //AcctVisible = false;
-            //TransactionVisible = false;
-            //BarrowerVisible = false;
+            }
+            #endregion
+
+
+            #region Button's Enter Mouse
+            foreach (StackPanel MainPanels in second_row_grid.Children.OfType<StackPanel>())
+            {
+                foreach (Button MainButtons in MainPanels.Children.OfType<Button>())
+                {
+                    Action<string> MainButtonFunctions = (Buttons) =>
+                    {
+                        switch (Buttons)
+                        {
+                            case "btnUserWindow":
+                                {
+                                    btnUserWindow.Background = (ImageBrush)Resources["Settings1"];
+                                }
+                                break;
+                            case "btnbooksWindow":
+                                {
+                                    btnbooksWindow.Background = (ImageBrush)Resources["Book1"];
+                                }
+                                break;
+                            case "btnAuthorWindow":
+                                {
+                                    btnAuthorWindow.Background = (ImageBrush)Resources["Author1"];
+                                }
+                                break;
+                            case "btnHome":
+                                {
+                                    btnHome.Background = (ImageBrush)Resources["Home1"];
+                                }
+                                break;
+                            case "btnborrowerWindow":
+                                {
+                                    btnborrowerWindow.Background = (ImageBrush)Resources["Borrower1"];
+                                }
+                                break;
+                            case "btnCourseWindow":
+                                {
+                                    btnCourseWindow.Background = (ImageBrush)Resources["Course1"];
+                                }
+                                break;
+                            case "btnTransWindow":
+                                {
+                                    btnborrowerWindow.Background = (ImageBrush)Resources["Trans1"];
+                                }
+                                break;
+                        }
+                    };
+                    MainButtons.MouseEnter += delegate
+                    {
+                        MainButtonFunctions(MainButtons.Name);
+                    };
+
+                    MainButtons.TouchEnter += delegate
+                    {
+                        MainButtonFunctions(MainButtons.Name);
+                    };
+                }
+
+
+            }
+            #endregion
         }
 
         private void storyBoardExit()
@@ -105,7 +202,7 @@ namespace SampleSystem
             menuslide(true, "sbShowRightMenu", "sbHideRightMenu", Notifs);
             btnRightMenuShow.Visibility = System.Windows.Visibility.Hidden;
             btnRightMenuHide.Visibility = System.Windows.Visibility.Visible;
-            closeAll();
+            
         }
 
         private void menuslide(bool isVisible, string x, string y, Control z)
@@ -174,7 +271,6 @@ namespace SampleSystem
 
         private void btnUserWindow_Click(object sender, RoutedEventArgs e)
         {
-            closeAll();
         }
 
         private void btnbooksWindow_Click(object sender, RoutedEventArgs e)

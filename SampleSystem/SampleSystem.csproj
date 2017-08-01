@@ -177,6 +177,17 @@
   <ItemGroup>
     <Resource Include="Images\crud_add_disabled.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\book1.png" />
+    <Resource Include="Images\filemanager1.png" />
+    <Resource Include="Images\home1.png" />
+    <Resource Include="Images\pen1.png" />
+    <Resource Include="Images\texteditor1.png" />
+    <Resource Include="Images\users1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\settings1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

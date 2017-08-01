@@ -37,10 +37,14 @@
                 <StackPanel Grid.Column="0" Margin="5 5 5 5">
                     <TextBlock Text="Book Configurations" Foreground="WhiteSmoke" FontFamily="Monotype Corsiva" Margin="0 0 0 5" HorizontalAlignment="Center"/>
                     <Grid>
-                        <TextBlock x:Name="txtSearchToolTip" Text="Search Here.." FontFamily="Century Gothic" Panel.ZIndex="2" Foreground="LightGray" Margin="3 3 0 0" Visibility="Visible" FontSize="10"/>
-                        <TextBox x:Name="txtUBSearch" Margin="0 0 0 5" FontFamily="Century Gothic" GotFocus="txtUBSearch_GotFocus" LostFocus="txtUBSearch_LostFocus"/>
+                        <TextBlock x:Name="txtSearchToolTip" Text="Search Here.." FontFamily="Century Gothic" Foreground="LightGray" Margin="10 5 0 0" Visibility="Visible" FontSize="10"/>
+                        <TextBox x:Name="txtUBSearch" Margin="0 0 0 5" FontFamily="Century Gothic" GotFocus="txtUBSearch_GotFocus" LostFocus="txtUBSearch_LostFocus">
+                            <TextBox.Background>
+                                <ImageBrush ImageSource="Images/search.png" AlignmentX="Right" Stretch="Uniform"/>
+                            </TextBox.Background>
+                        </TextBox>
                     </Grid>
-                    <DataGrid x:Name="dgBooks" FontFamily="Century Gothic" Height="160" HorizontalGridLinesBrush="#FF688CAF" VerticalGridLinesBrush="#FF688CAF" ItemsSource="{Binding}">
+                    <DataGrid x:Name="dgBooks" FontFamily="Century Gothic" Height="160" HorizontalGridLinesBrush="#FF688CAF" VerticalGridLinesBrush="#FF688CAF" ItemsSource="{Binding}" MouseLeftButtonUp="dgBooks_MouseLeftButtonUp">
                         <DataGrid.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="Black" Offset="0"/>
@@ -48,6 +52,7 @@
                             </LinearGradientBrush>
                         </DataGrid.Background>
                     </DataGrid>
+                    <TextBox x:Name="txtBookId" Visibility="Hidden"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Margin="5 5 5 5" Orientation="Vertical"  VerticalAlignment="Center">
                     <TextBlock Text="Book Title:" FontFamily="Century Gothic" Foreground="WhiteSmoke" FontSize="10"/>
@@ -73,9 +78,9 @@
                         </StackPanel>
                         
                     </Grid>
-                    <StackPanel x:Name="FunctionButtons" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel x:Name="FunctionButtons_Book" Orientation="Horizontal" HorizontalAlignment="Center">
                         <StackPanel Orientation="Vertical">
-                            <Button x:Name="btnB_Add" Width="40" Height="40" Content="" BorderBrush="Transparent" Style="{StaticResource BtnStyle}">
+                            <Button x:Name="btnB_Add" Width="40" Height="40" Content="" BorderBrush="Transparent" Style="{StaticResource BtnStyle}" Click="btnB_Add_Click">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Images\crud_add.png"></ImageBrush>
                                 </Button.Background>
@@ -84,7 +89,7 @@
                         </StackPanel>
 
                         <StackPanel Orientation="Vertical">
-                            <Button x:Name="btnB_Edit" Width="40" Height="40" Content="" BorderBrush="Transparent" Style="{StaticResource BtnStyle}">
+                            <Button x:Name="btnB_Edit" Width="40" Height="40" Content="" BorderBrush="Transparent" Style="{StaticResource BtnStyle}" Click="btnB_Edit_Click">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Images\crud_edit.png"></ImageBrush>
                                 </Button.Background>
@@ -93,7 +98,7 @@
                         </StackPanel>
 
                         <StackPanel Orientation="Vertical">
-                            <Button x:Name="btnB_Delete" Width="40" Height="40" Content="" BorderBrush="Transparent" Style="{StaticResource BtnStyle}">
+                            <Button x:Name="btnB_Delete" Width="40" Height="40" Content="" BorderBrush="Transparent" Style="{StaticResource BtnStyle}" Click="btnB_Delete_Click">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Images\crud_delete.png"></ImageBrush>
                                 </Button.Background>
@@ -102,7 +107,7 @@
                         </StackPanel>
 
                         <StackPanel Orientation="Vertical">
-                            <Button x:Name="btnB_Save" Width="40" Height="40" Content="" BorderBrush="Transparent" Style="{StaticResource BtnStyle}">
+                            <Button x:Name="btnB_Save" Width="40" Height="40" Content="" BorderBrush="Transparent" Style="{StaticResource BtnStyle}" Click="btnB_Save_Click">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Images\crud_save.png"></ImageBrush>
                                 </Button.Background>
