@@ -6,6 +6,14 @@
              xmlns:local="clr-namespace:SampleSystem"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Height="220" Width="515" Loaded="UserControl_Loaded">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Buttons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -27,8 +35,12 @@
                 <StackPanel Grid.Column="1" Margin="5 5 5 5">
                     <TextBlock Text="Author Configurations" Foreground="WhiteSmoke" FontFamily="Monotype Corsiva" Margin="0 0 0 5" HorizontalAlignment="Center"/>
                     <Grid>
-                        <TextBlock x:Name="txtUASearchToolTip" Text="Search Here.." FontFamily="Century Gothic" Panel.ZIndex="2" Foreground="LightGray" Margin="3 3 0 0" Visibility="Visible" FontSize="10"/>
-                        <TextBox x:Name="txtUASearch" Margin="0 0 0 5" FontFamily="Century Gothic" GotFocus="txtUASearch_GotFocus" LostFocus="txtUASearch_LostFocus" TextChanged="txtUASearch_TextChanged"/>
+                        <TextBlock x:Name="txtUASearchToolTip" Text="Search Here.." FontFamily="Century Gothic" Foreground="LightGray" Margin="20 5 0 0" Visibility="Visible" FontSize="10"/>
+                        <TextBox x:Name="txtUASearch" Margin="0 0 0 5" FontFamily="Century Gothic" GotFocus="txtUASearch_GotFocus" LostFocus="txtUASearch_LostFocus" TextChanged="txtUASearch_TextChanged"  Foreground="WhiteSmoke">
+                            <TextBox.Background>
+                                <ImageBrush ImageSource="Images/search.png" AlignmentX="Left" Stretch="Uniform"/>
+                            </TextBox.Background>    
+                        </TextBox>
                     </Grid>
                     <DataGrid x:Name="dgAuthor" FontFamily="Century Gothic" Height="160" HorizontalGridLinesBrush="#FF688CAF" VerticalGridLinesBrush="#FF688CAF" ItemsSource="{Binding}" MouseLeftButtonUp="dgAuthor_MouseLeftButtonUp">
                         <DataGrid.Background>
@@ -45,33 +57,34 @@
                     </DataGrid>
                 </StackPanel>
                 <StackPanel Grid.Column="0" Margin="5 5 5 5" Orientation="Vertical"  VerticalAlignment="Center">
+                    <TextBox x:Name="txtAuthoriD" FontFamily="Century Gothic" Visibility="Hidden"/>
                     <TextBlock Text="Author First Name:" FontFamily="Century Gothic" Foreground="WhiteSmoke" FontSize="10"/>
                     <TextBox x:Name="txtAuthorFname" FontFamily="Century Gothic" Margin="0 0 0 5"/>
 
                     <TextBlock Text="Author Last Name:" FontFamily="Century Gothic" Foreground="WhiteSmoke" FontSize="10"/>
                     <TextBox x:Name="txtAuthorLname" FontFamily="Century Gothic" Margin="0 0 0 10"/>
                     
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel x:Name="FunctionButtons" Orientation="Horizontal" HorizontalAlignment="Center">
                         <StackPanel Orientation="Vertical">
-                            <Button x:Name="btnA_Add" Width="40" Height="40" Content="" BorderBrush="Transparent" Click="btnA_Add_Click">
+                                <Button x:Name="btnA_Add" Width="40" Height="40" Content="" BorderBrush="Transparent" Click="btnA_Add_Click" Style="{StaticResource BtnStyle}">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Images\crud_add.png"></ImageBrush>
                                 </Button.Background>
                             </Button>
-                            <TextBlock Text="Add" FontFamily="Century Gothic" FontSize="10" HorizontalAlignment="Center" FontWeight="Bold"/>
+                            <TextBlock Text="New" FontFamily="Century Gothic" FontSize="10" HorizontalAlignment="Center" FontWeight="Bold"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Vertical">
-                            <Button x:Name="btnA_Edit" Width="40" Height="40" Content="" BorderBrush="Transparent" Click="btnA_Edit_Click">
+                            <Button x:Name="btnA_Edit" Width="40" Height="40" Content="" BorderBrush="Transparent" Click="btnA_Edit_Click" Style="{StaticResource BtnStyle}">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Images\crud_edit.png"></ImageBrush>
                                 </Button.Background>
                             </Button>
-                            <TextBlock Text="Modify" FontFamily="Century Gothic" FontSize="10" HorizontalAlignment="Center" FontWeight="Bold"/>
+                            <TextBlock Text="Modify" FontFamily="Century Gothic" FontSize="10" HorizontalAlignment="Center" FontWeight="Bold" />
                         </StackPanel>
 
                         <StackPanel Orientation="Vertical">
-                            <Button x:Name="btnA_Delete" Width="40" Height="40" Content="" BorderBrush="Transparent" Click="btnA_Delete_Click">
+                            <Button x:Name="btnA_Delete" Width="40" Height="40" Content="" BorderBrush="Transparent" Click="btnA_Delete_Click" Style="{StaticResource BtnStyle}">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Images\crud_delete.png"></ImageBrush>
                                 </Button.Background>
@@ -80,7 +93,7 @@
                         </StackPanel>
 
                         <StackPanel Orientation="Vertical">
-                            <Button x:Name="btnA_Save" Width="40" Height="40" Content="" BorderBrush="Transparent" Click="btnA_Save_Click">
+                            <Button x:Name="btnA_Save" Width="40" Height="40" Content="" BorderBrush="Transparent" Click="btnA_Save_Click" Style="{StaticResource BtnStyle}">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Images\crud_save.png"></ImageBrush>
                                 </Button.Background>

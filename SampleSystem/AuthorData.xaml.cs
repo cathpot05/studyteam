@@ -4,6 +4,8 @@ using System.Windows.Controls;
 using System.Data.SqlClient;
 using System.Data;
 using System;
+using System.Windows.Media;
+using System.Linq;
 
 namespace SampleSystem
 {
@@ -15,19 +17,145 @@ namespace SampleSystem
         public AuthorData()
         {
             InitializeComponent();
+            #region Button's Func_Leave Mouse
+             foreach (StackPanel CrudPanels in FunctionButtons.Children)
+            {
+                foreach(Button CrudButtons in CrudPanels.Children.OfType<Button>())
+                {
+                    Action<string> CrudButtonFunctions = (Buttons) =>
+                    {
+                        switch (Buttons)
+                        {
+                            case "btnA_Add":
+                                {
+                                    btnA_Add.Background = (ImageBrush)Resources["AddNormal"];
+                                }
+                                break;
+                            case "btnA_Edit":
+                                {
+                                    btnA_Edit.Background = (ImageBrush)Resources["EditNormal"];
+                                }
+                                break;
+                            case "btnA_Delete":
+                                {
+                                    btnA_Delete.Background = (ImageBrush)Resources["DeleteNormal"];
+                                }
+                                break;
+                            case "btnA_Save":
+                                {
+                                    btnA_Save.Background = (ImageBrush)Resources["SaveNormal"];
+                                }
+                                break;
+                        }
+                    };
+                    CrudButtons.MouseLeave += delegate
+                    {
+                        CrudButtonFunctions(CrudButtons.Name);
+                    };
+
+                    CrudButtons.TouchLeave += delegate
+                    {
+                        CrudButtonFunctions(CrudButtons.Name);
+                    };
+                }
+
+               
+            }
+            #endregion
+
+
+            #region Button's Enter Mouse
+            foreach (StackPanel CrudPanels in FunctionButtons.Children)
+            {
+                foreach (Button CrudButtons in CrudPanels.Children.OfType<Button>())
+                {
+                    Action<string> CrudButtonFunctions = (Buttons) =>
+                    {
+                        switch (Buttons)
+                        {
+                            case "btnA_Add":
+                                {
+                                    btnA_Add.Background = (ImageBrush)Resources["AddPress"];
+                                }
+                                break;
+                            case "btnA_Edit":
+                                {
+                                    btnA_Edit.Background = (ImageBrush)Resources["EditPress"];
+                                }
+                                break;
+                            case "btnA_Delete":
+                                {
+                                    btnA_Delete.Background = (ImageBrush)Resources["DeletePress"];
+                                }
+                                break;
+                            case "btnA_Save":
+                                {
+                                    btnA_Save.Background = (ImageBrush)Resources["SavePress"];
+                                }
+                                break;
+                        }
+                    };
+                    CrudButtons.MouseEnter += delegate
+                    {
+                        CrudButtonFunctions(CrudButtons.Name);
+                    };
+
+                    CrudButtons.TouchEnter += delegate
+                    {
+                        CrudButtonFunctions(CrudButtons.Name);
+                    };
+                }
+
+
+            }
+            #endregion
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             AuthorLoad("");
+            enabledNewTransbutton();
+
         }
 
         private void clearControls()
         {
             txtAuthorFname.Text = "";
             txtAuthorLname.Text = "";
+            txtAuthoriD.Text = "";
         }
 
+        private void enabledNewTransbutton()
+        {
+            btnA_Edit.Background = (ImageBrush)Resources["EditPress"];
+            btnA_Delete.Background = (ImageBrush)Resources["DeletePress"];
+            btnA_Save.Background = (ImageBrush)Resources["SaveNormal"];
+            //var editImg = new ImageBrush();
+            //editImg.ImageSource = new BitmapImage(new Uri(@"Images\crud_edit_disable.png", UriKind.Relative));
+            //btnA_Edit.Background = editImg;
+
+            btnA_Edit.IsEnabled = false;
+            btnA_Delete.IsEnabled = false;
+            btnA_Save.IsEnabled = true;
+            btnA_Add.IsEnabled = true;
+        }
+
+        private void modifyTrans()
+        {
+            //var editImg = new ImageBrush();
+            //editImg.ImageSource = new BitmapImage(new Uri(@"Images\crud_edit.png", UriKind.Relative));
+            //btnA_Edit.Background = editImg;
+            btnA_Edit.Background = (ImageBrush)Resources["EditNormal"];
+            btnA_Delete.Background = (ImageBrush)Resources["DeleteNormal"];
+            btnA_Save.Background = (ImageBrush)Resources["SavePress"];
+
+
+            btnA_Edit.IsEnabled = true;
+            btnA_Delete.IsEnabled = true;
+            btnA_Save.IsEnabled = false;
+
+        }
+        
 
         private void AuthorLoad(string value)
         {
@@ -96,24 +224,26 @@ namespace SampleSystem
         private void btnA_Add_Click(object sender, RoutedEventArgs e)
         {
             clearControls();
-            CrudConfiguration func = new CrudConfiguration();
-            func.getFunction("INSERT");
+            enabledNewTransbutton();
+
+            //CrudConfiguration func = new CrudConfiguration();
+            //func.getFunction("INSERT");
 
         }
 
         private void btnA_Edit_Click(object sender, RoutedEventArgs e)
         {
-
+            enabledNewTransbutton();
         }
 
         private void btnA_Delete_Click(object sender, RoutedEventArgs e)
         {
-
+            enabledNewTransbutton();
         }
 
         private void btnA_Save_Click(object sender, RoutedEventArgs e)
         {
-
+            enabledNewTransbutton();
         }
 
         //private void dgAuthor_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -126,10 +256,13 @@ namespace SampleSystem
         {
             if (dgAuthor.SelectedIndex != -1)
             {
+
                 DataRowView x = (DataRowView)dgAuthor.SelectedItems[0];
+                txtAuthoriD.Text = x[0].ToString();
                 txtAuthorFname.Text = x[1].ToString();
                 txtAuthorLname.Text = x[2].ToString();
             }
+            modifyTrans();
         }
 
         private void txtUASearch_TextChanged(object sender, TextChangedEventArgs e)

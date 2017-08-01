@@ -6,6 +6,16 @@
              xmlns:local="clr-namespace:SampleSystem"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Height="220" Width="515" Loaded="UserControl_Loaded">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Buttons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+
     <Grid>
         <Grid.Background>
             <RadialGradientBrush>
@@ -63,9 +73,9 @@
                         </StackPanel>
                         
                     </Grid>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel x:Name="FunctionButtons" Orientation="Horizontal" HorizontalAlignment="Center">
                         <StackPanel Orientation="Vertical">
-                            <Button x:Name="btnB_Add" Width="40" Height="40" Content="" BorderBrush="Transparent">
+                            <Button x:Name="btnB_Add" Width="40" Height="40" Content="" BorderBrush="Transparent" Style="{StaticResource BtnStyle}">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Images\crud_add.png"></ImageBrush>
                                 </Button.Background>
@@ -74,7 +84,7 @@
                         </StackPanel>
 
                         <StackPanel Orientation="Vertical">
-                            <Button x:Name="btnB_Edit" Width="40" Height="40" Content="" BorderBrush="Transparent">
+                            <Button x:Name="btnB_Edit" Width="40" Height="40" Content="" BorderBrush="Transparent" Style="{StaticResource BtnStyle}">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Images\crud_edit.png"></ImageBrush>
                                 </Button.Background>
@@ -83,7 +93,7 @@
                         </StackPanel>
 
                         <StackPanel Orientation="Vertical">
-                            <Button x:Name="btnB_Delete" Width="40" Height="40" Content="" BorderBrush="Transparent">
+                            <Button x:Name="btnB_Delete" Width="40" Height="40" Content="" BorderBrush="Transparent" Style="{StaticResource BtnStyle}">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Images\crud_delete.png"></ImageBrush>
                                 </Button.Background>
@@ -92,7 +102,7 @@
                         </StackPanel>
 
                         <StackPanel Orientation="Vertical">
-                            <Button x:Name="btnB_Save" Width="40" Height="40" Content="" BorderBrush="Transparent">
+                            <Button x:Name="btnB_Save" Width="40" Height="40" Content="" BorderBrush="Transparent" Style="{StaticResource BtnStyle}">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Images\crud_save.png"></ImageBrush>
                                 </Button.Background>

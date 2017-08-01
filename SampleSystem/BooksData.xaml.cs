@@ -42,8 +42,8 @@ namespace SampleSystem
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            comboBoxLoad();
-            gridLoading();
+            //comboBoxLoad();
+            //gridLoading();
         }
 
         private void gridLoading()
