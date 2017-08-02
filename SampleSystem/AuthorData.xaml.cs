@@ -213,34 +213,164 @@ namespace SampleSystem
             }
         }
 
-        //void getTheValue(object sender, RoutedEventArgs e)
-        //{
-
-        //}
-
         private void btnA_Add_Click(object sender, RoutedEventArgs e)
         {
             clearControls();
             enabledNewTransbutton();
 
-            //CrudConfiguration func = new CrudConfiguration();
-            //func.getFunction("INSERT");
-
         }
 
         private void btnA_Edit_Click(object sender, RoutedEventArgs e)
         {
-            enabledNewTransbutton();
+            try
+            {
+                //let's check first if the textboxes are empty since we cannot allow a blank data
+                if(txtAuthorFname.Text.Trim() == null || txtAuthorFname.Text.Trim() == null)
+                {
+                    MessageBox.Show("Author name cannot be empty");
+                    return;
+                }
+
+                SqlConnect con = new SqlConnect();
+                con.conOpen();
+                if(con  != null)
+                {
+                    //lets check first if the data trying to change is already exist.
+                    string check = "SELECT TOP 1 * FROM tblAuthor WHERE author_fname = @fname and author_lname = @lname";
+                    SqlCommand cmdcheck = new SqlCommand(check, con.Con);
+                    cmdcheck.Parameters.AddWithValue("@fname", txtAuthorFname.Text.Trim());
+                    cmdcheck.Parameters.AddWithValue("@lname", txtAuthorLname.Text.Trim());
+                    SqlDataReader sdr = cmdcheck.ExecuteReader();
+
+                    if (sdr.Read()) //if theres a record
+                    {
+                        MessageBox.Show("Cannot update record, the data you are trying to change already exist.");
+                        sdr.Close();
+                        return;
+                    }
+                    else //we can change or update it
+                    {
+                        sdr.Close();
+                        string query = "UPDATE tblAuthor SET author_fname = @fname, author_lname = @lname WHERE authorid = @id";
+                        SqlCommand cmd = new SqlCommand(query, con.Con);
+                        cmd.Parameters.AddWithValue("@fname", txtAuthorFname.Text.Trim());
+                        cmd.Parameters.AddWithValue("@lname", txtAuthorLname.Text.Trim());
+                        cmd.Parameters.AddWithValue("@id", txtAuthoriD.Text.Trim());
+                        cmd.ExecuteNonQuery();
+                        AuthorLoad("");
+                        enabledNewTransbutton();
+                    }
+                    
+                }
+                else
+                {
+                    return;
+                }
+                con.conclose();
+
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void btnA_Delete_Click(object sender, RoutedEventArgs e)
         {
-            enabledNewTransbutton();
+            try
+            {
+                SqlConnect con = new SqlConnect();
+                con.conOpen();
+                if (con != null)
+                {
+                    //check first if theres any book from tblBooks that uses the id of author
+                    string check = "SELECT TOP 1 * FROM tblBooks WHERE bookauthor_id = @id";
+                    SqlCommand cmdcheck = new SqlCommand(check, con.Con);
+                    cmdcheck.Parameters.AddWithValue("@id", txtAuthoriD.Text.Trim());
+                    SqlDataReader sdr = cmdcheck.ExecuteReader();
+
+                    if (sdr.Read()) //if theres a record
+                    {
+                        string booktitle = sdr["booktitle"].ToString(); // if ever the booktitle is ask, we can use this.
+                        MessageBox.Show("Cannot delete record, there's a reference from book list.");
+                        sdr.Close();
+                        return;
+                    }else //we can proceed to deleting of that record
+                    {
+                        sdr.Close();
+                        string query = "DELETE FROM tblAuthor WHERE authorid = @id";
+                        SqlCommand cmd = new SqlCommand(query, con.Con);
+                        cmd.Parameters.AddWithValue("@id", txtAuthoriD.Text.Trim());
+                        cmd.ExecuteNonQuery();
+                        AuthorLoad("");
+                        enabledNewTransbutton();
+                    }
+                }
+                else
+                {
+                    return;
+                }
+                con.conclose();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnA_Save_Click(object sender, RoutedEventArgs e)
         {
-            enabledNewTransbutton();
+            try
+            {
+                //let's check first if textboxes are empty since we cannot insert blank data
+                if (txtAuthorFname.Text.Trim() == null || txtAuthorLname.Text.Trim() == null)
+                {
+                    MessageBox.Show("Author name cannot be empty.");
+                    return;
+                }
+                SqlConnect con = new SqlConnect();
+                con.conOpen();
+                if (con != null)
+                {
+                    //check first if the record trying to add is already exist
+                    string check = "SELECT TOP 1 * FROM tblAuthor WHERE author_fname = @fname and author_lname = @lname";
+                    SqlCommand cmdcheck = new SqlCommand(check, con.Con);
+                    cmdcheck.Parameters.AddWithValue("@fname", txtAuthorFname.Text.Trim());
+                    cmdcheck.Parameters.AddWithValue("@lname", txtAuthorLname.Text.Trim());
+                    SqlDataReader sdr = cmdcheck.ExecuteReader();
+
+                    if (sdr.Read()) //if theres a record
+                    {
+                        MessageBox.Show("Cannot Insert. The record you are trying to add is already exist. \n Author Firstname: "+txtAuthorFname.Text.Trim()+ " \n Author LastName: " +txtAuthorLname.Text.Trim()+" ");
+                        sdr.Close();
+                        return;
+                    }
+                    else //let's insert and add the data
+                    {
+                        sdr.Close();
+                        string query = "INSERT INTO tblAuthor (author_fname, author_lname) VALUES (@fname, @lname)";
+                        SqlCommand cmd = new SqlCommand(query, con.Con);
+                        cmd.Parameters.AddWithValue("@fname", txtAuthorFname.Text.Trim());
+                        cmd.Parameters.AddWithValue("@lname", txtAuthorLname.Text.Trim());
+                        cmd.ExecuteNonQuery();
+                        AuthorLoad("");
+                        enabledNewTransbutton();
+                    }
+                    
+                }
+                else
+                {
+                    return;
+                }
+                con.conclose();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         //private void dgAuthor_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -264,7 +394,8 @@ namespace SampleSystem
 
         private void txtUASearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            AuthorLoad(this.txtUASearch.Text);
+
+            AuthorLoad(this.txtUASearch.Text.Trim());
         }
     }
 }
