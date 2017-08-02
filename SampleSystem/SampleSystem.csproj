@@ -55,22 +55,46 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AccountUC.xaml.cs">
+      <DependentUpon>AccountUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AuthorData.xaml.cs">
       <DependentUpon>AuthorData.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BarrowerUC.xaml.cs">
+      <DependentUpon>BarrowerUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BooksData.xaml.cs">
       <DependentUpon>BooksData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CourseUC.xaml.cs">
+      <DependentUpon>CourseUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="CrudConfiguration.cs" />
     <Compile Include="Notifications.xaml.cs">
       <DependentUpon>Notifications.xaml</DependentUpon>
     </Compile>
     <Compile Include="SqlConnect.cs" />
+    <Compile Include="TransactionUC.xaml.cs">
+      <DependentUpon>TransactionUC.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AccountUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AuthorData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="BarrowerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BooksData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CourseUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -109,6 +133,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\Buttons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TransactionUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -187,6 +215,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\settings1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\borrow.png" />
+    <Resource Include="Images\return.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

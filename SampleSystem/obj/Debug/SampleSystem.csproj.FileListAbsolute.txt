@@ -25,3 +25,11 @@ C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\Sampl
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\SampleSystem.csprojResolveAssemblyReference.cache
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\Styles\Fonts.baml
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\Styles\Buttons.baml
+C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\AccountUC.g.cs
+C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\BarrowerUC.g.cs
+C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\CourseUC.g.cs
+C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\TransactionUC.g.cs
+C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\AccountUC.baml
+C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\BarrowerUC.baml
+C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\CourseUC.baml
+C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\TransactionUC.baml
