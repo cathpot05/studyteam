@@ -35,15 +35,11 @@
                 <StackPanel Grid.Column="1" Margin="5 5 5 5">
                     <TextBlock Text="Author Configurations" Foreground="WhiteSmoke" FontFamily="Monotype Corsiva" Margin="0 0 0 5" HorizontalAlignment="Center"/>
                     <Grid>
-                        <TextBlock x:Name="txtUASearchToolTip" Text="Search Here.." FontFamily="Century Gothic" Foreground="LightGray" Margin="20 5 0 0" Visibility="Visible" FontSize="10" Panel.ZIndex="1"/>
+                        <TextBlock x:Name="txtUASearchToolTip" Text="Search Here.." FontFamily="Century Gothic" Foreground="LightGray" Margin="20 5 0 0" Visibility="Visible" FontSize="10"/>
                         <Border BorderBrush="WhiteSmoke" BorderThickness="1" CornerRadius="3" Margin="0 0 0 7">
                             <DockPanel>
-                                <Button DockPanel.Dock="Left" Style="{StaticResource BtnStyle}" Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Center">
-                                    <Button.Background>
-                                        <ImageBrush ImageSource="Images/search.png"/>
-                                    </Button.Background>
-                                </Button>
-                                <TextBox x:Name="txtUASearch" Margin="0 0 0 5" FontFamily="Century Gothic" GotFocus="txtUASearch_GotFocus" LostFocus="txtUASearch_LostFocus" TextChanged="txtUASearch_TextChanged"  Foreground="WhiteSmoke" Background="Transparent" BorderBrush="Transparent">
+                                <Image DockPanel.Dock="Left" Source="Images/search.png" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtUASearch" Margin="0 0 0 5" FontFamily="Century Gothic" GotFocus="txtUASearch_GotFocus" LostFocus="txtUASearch_LostFocus" TextChanged="txtUASearch_TextChanged"  Foreground="WhiteSmoke" Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
                                     <!--<TextBox.Background>
                                 <ImageBrush ImageSource="Images/search.png" AlignmentX="Right" Stretch="Uniform"/>
                             </TextBox.Background>-->

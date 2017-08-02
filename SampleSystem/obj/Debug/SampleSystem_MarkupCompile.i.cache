@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\App.xaml
-8-270243502
+12-1716607755
 
-16-1434826008
+20-1625355840
 13738642453
-AuthorData.xaml;BooksData.xaml;LoginForm.xaml;LoginUC.xaml;MainWindow.xaml;Notifications.xaml;Styles\Fonts.xaml;Styles\Buttons.xaml;
+AccountUC.xaml;AuthorData.xaml;BarrowerUC.xaml;BooksData.xaml;CourseUC.xaml;LoginForm.xaml;LoginUC.xaml;MainWindow.xaml;Notifications.xaml;Styles\Fonts.xaml;Styles\Buttons.xaml;TransactionUC.xaml;
 
 False
 

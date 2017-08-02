@@ -174,17 +174,29 @@ namespace SampleSystem
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             comboBoxLoad();
-            gridLoading();
+            gridLoading("");
         }
 
-        private void gridLoading()
+        private void gridLoading(string value)
         {
+            var _condition = "";
+            if (value == "")
+            {
+                _condition = "";
+            }
+            else
+            {
+                _condition = "WHERE A.booktitle LIKE '%" + @value + "%' OR B.author_fname LIKE '%" + @value + "%' OR B.author_lname LIKE '%" + @value + "%'";
+
+            }
+
             SqlConnect con = new SqlConnect();
             con.conOpen();
             if(con != null)
             {
-                string q = "SELECT A.*, (B.author_fname + ' ' + B.author_lname) AS Author FROM tblBooks A INNER JOIN tblAuthor B ON A.bookauthor_id = B.authorid";
+                string q = "SELECT A.*, (B.author_fname + ' ' + B.author_lname) AS Author FROM tblBooks A INNER JOIN tblAuthor B ON A.bookauthor_id = B.authorid " +_condition;
                 SqlCommand cmd = new SqlCommand(q, con.Con);
+                cmd.Parameters.AddWithValue("@value", value);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
@@ -252,18 +264,182 @@ namespace SampleSystem
 
         private void btnB_Edit_Click(object sender, RoutedEventArgs e)
         {
-            enabledNewTransbutton();
+            try
+            {
+                //let's check first if the textboxes are empty since we cannot allow a blank data
+                if (txtbTitle.Text.Trim() == null || txtbQty.Text.Trim() == null || cboBauthor.Text == null || dP_datePublished.Text== null) 
+                {
+                    MessageBox.Show("Book info cannot be empty");
+                    return;
+                }
+                if (Convert.ToInt32(txtbQty.Text) < 0)
+                {
+                    MessageBox.Show("Quantity cannot be less than zero");
+                    return;
+                }
+
+                SqlConnect con = new SqlConnect();
+                con.conOpen();
+                if (con != null)
+                {
+                    //let's check first if the data trying to change is already exist.
+                    string check = "SELECT TOP 1 * FROM tblBooks WHERE booktitle = @title";
+                    SqlCommand cmdcheck = new SqlCommand(check, con.Con);
+                    cmdcheck.Parameters.AddWithValue("@title", txtbTitle.Text.Trim());
+                    SqlDataReader sdr = cmdcheck.ExecuteReader();
+
+                    if (sdr.Read()) //if theres a record, return, meaning we cannot allow it
+                    {
+                        MessageBox.Show("Cannot update record, the data you are trying to change already exist.");
+                        sdr.Close();
+                        return;
+                    }
+                    else //we can change or update it
+                    {
+                        sdr.Close();
+                        string query = "UPDATE tblBooks SET booktitle = @title, bookauthor_id = @author, datepublished = @dtpub, qty = @qty WHERE bookid = @id";
+                        SqlCommand cmd = new SqlCommand(query, con.Con);
+                        cmd.Parameters.AddWithValue("@id", txtBookId.Text.Trim());
+                        cmd.Parameters.AddWithValue("@title", txtbTitle.Text.Trim());
+                        cmd.Parameters.AddWithValue("@author", cboBauthor.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@dtpub", dP_datePublished.Text.Trim());
+                        cmd.Parameters.AddWithValue("@qty", txtbQty.Text.Trim());
+                        //cmd.Parameters.AddWithValue("@stocks", txtbStocks.Text.Trim());
+
+                        cmd.ExecuteNonQuery();
+                        gridLoading("");
+                        enabledNewTransbutton();
+                        clearControls();
+
+                    }
+
+                }
+                else
+                {
+                    return;
+                }
+                con.conclose();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnB_Delete_Click(object sender, RoutedEventArgs e)
         {
-            enabledNewTransbutton();
+            try
+            {
 
-        }
+                SqlConnect con = new SqlConnect();
+                con.conOpen();
+                if (con != null)
+                {
+                    //let's check first if the data trying to delete has a record in our main transactions.
+                    string check = "SELECT TOP 1 * FROM tblTransaction WHERE book_id = @id";
+                    SqlCommand cmdcheck = new SqlCommand(check, con.Con);
+                    cmdcheck.Parameters.AddWithValue("@id", txtBookId.Text.Trim());
+                    SqlDataReader sdr = cmdcheck.ExecuteReader();
+
+                    if (sdr.Read()) //if theres a record, return, meaning we cannot allow it
+                    {
+                        MessageBox.Show("Cannot delete record, the data you are trying to delete has a history on main transaction. Make it inactive instead");
+                        sdr.Close();
+                        return;
+                    }
+                    else //we can change or update it
+                    {
+                        sdr.Close();
+                        string query = "DELETE FROM tblBooks WHERE bookid = @id";
+                        SqlCommand cmd = new SqlCommand(query, con.Con);
+                        cmd.Parameters.AddWithValue("@id", txtBookId.Text.Trim());
+                        cmd.ExecuteNonQuery();
+                        gridLoading("");
+                        enabledNewTransbutton();
+                        clearControls();
+                    }
+
+                }
+                else
+                {
+                    return;
+                }
+                con.conclose();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+         }
 
         private void btnB_Save_Click(object sender, RoutedEventArgs e)
         {
-            enabledNewTransbutton();
+            try
+            {
+                //let's check first if the textboxes are empty since we cannot allow a blank data
+                if (txtbTitle.Text.Trim() == null || txtbQty.Text.Trim() == null || cboBauthor.Text == null || dP_datePublished.Text == null)
+                {
+                    MessageBox.Show("Book info cannot be empty");
+                    return;
+                }
+                if (Convert.ToInt32(txtbQty.Text) < 0)
+                {
+                    MessageBox.Show("Quantity cannot be less than zero");
+                    return;
+                }
+
+                SqlConnect con = new SqlConnect();
+                con.conOpen();
+                if (con != null)
+                {
+                    //let's check first if the data trying to change is already exist.
+                    string check = "SELECT TOP 1 * FROM tblBooks WHERE booktitle = @title";
+                    SqlCommand cmdcheck = new SqlCommand(check, con.Con);
+                    cmdcheck.Parameters.AddWithValue("@title", txtbTitle.Text.Trim());
+                    SqlDataReader sdr = cmdcheck.ExecuteReader();
+
+                    if (sdr.Read()) //if theres a record, return, meaning we cannot allow it
+                    {
+                        MessageBox.Show("Cannot add this record, the data you are trying to change already exist.");
+                        sdr.Close();
+                        return;
+                    }
+                    else //we can add or insert it
+                    {
+                        sdr.Close();
+                        string query = "INSERT INTO tblBooks (booktitle, bookauthor_id, datepublished, qty, stocks) VALUES (@title, @author, @dtpub, @qty, @qty)";
+                        SqlCommand cmd = new SqlCommand(query, con.Con);
+                        cmd.Parameters.AddWithValue("@title", txtbTitle.Text.Trim());
+                        cmd.Parameters.AddWithValue("@author", cboBauthor.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@dtpub", dP_datePublished.Text.Trim());
+                        cmd.Parameters.AddWithValue("@qty", txtbQty.Text.Trim());
+                        //cmd.Parameters.AddWithValue("@stocks", txtbStocks.Text.Trim());
+
+                        cmd.ExecuteNonQuery();
+                        gridLoading("");
+                        enabledNewTransbutton();
+                        clearControls();
+
+                    }
+
+                }
+                else
+                {
+                    return;
+                }
+                con.conclose();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void txtUBSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            gridLoading(this.txtUBSearch.Text.Trim());
         }
     }
 }

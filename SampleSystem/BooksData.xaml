@@ -37,12 +37,18 @@
                 <StackPanel Grid.Column="0" Margin="5 5 5 5">
                     <TextBlock Text="Book Configurations" Foreground="WhiteSmoke" FontFamily="Monotype Corsiva" Margin="0 0 0 5" HorizontalAlignment="Center"/>
                     <Grid>
-                        <TextBlock x:Name="txtSearchToolTip" Text="Search Here.." FontFamily="Century Gothic" Foreground="LightGray" Margin="10 5 0 0" Visibility="Visible" FontSize="10"/>
-                        <TextBox x:Name="txtUBSearch" Margin="0 0 0 5" FontFamily="Century Gothic" GotFocus="txtUBSearch_GotFocus" LostFocus="txtUBSearch_LostFocus">
-                            <TextBox.Background>
+                        <TextBlock x:Name="txtSearchToolTip" Text="Search Here.." FontFamily="Century Gothic" Foreground="Gray" Margin="20 5 0 0" Visibility="Visible" FontSize="10"/>
+                        <Border BorderThickness="1" CornerRadius="3" BorderBrush="WhiteSmoke" Margin="0 0 0 5">
+                            <DockPanel>
+                                <Image DockPanel.Dock="Left" Source="Images/search.png" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                <TextBox x:Name="txtUBSearch" Margin="0 0 0 5" FontFamily="Century Gothic" GotFocus="txtUBSearch_GotFocus" LostFocus="txtUBSearch_LostFocus" TextChanged="txtUBSearch_TextChanged" BorderBrush="Transparent" BorderThickness="0" Background="Transparent">
+                                    <!--<TextBox.Background>
                                 <ImageBrush ImageSource="Images/search.png" AlignmentX="Right" Stretch="Uniform"/>
-                            </TextBox.Background>
-                        </TextBox>
+                            </TextBox.Background>-->
+                                </TextBox>
+                            </DockPanel>
+                        </Border>
+                        
                     </Grid>
                     <DataGrid x:Name="dgBooks" FontFamily="Century Gothic" Height="160" HorizontalGridLinesBrush="#FF688CAF" VerticalGridLinesBrush="#FF688CAF" ItemsSource="{Binding}" MouseLeftButtonUp="dgBooks_MouseLeftButtonUp">
                         <DataGrid.Background>
@@ -74,7 +80,7 @@
                         </StackPanel>
                         <StackPanel Grid.Column="1" Margin="3 0 0 0">
                             <TextBlock Text="Stocks:" FontFamily="Century Gothic" Foreground="WhiteSmoke" FontSize="10"/>
-                            <TextBox x:Name="txtbStocks" FontFamily="Century Gothic" Margin="0 0 0 5"/>
+                            <TextBox x:Name="txtbStocks" FontFamily="Century Gothic" Margin="0 0 0 5" IsReadOnly="True"/>
                         </StackPanel>
                         
                     </Grid>

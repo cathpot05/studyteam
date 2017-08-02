@@ -235,14 +235,14 @@ namespace SampleSystem
                 con.conOpen();
                 if(con  != null)
                 {
-                    //lets check first if the data trying to change is already exist.
+                    //let's check first if the data trying to change is already exist.
                     string check = "SELECT TOP 1 * FROM tblAuthor WHERE author_fname = @fname and author_lname = @lname";
                     SqlCommand cmdcheck = new SqlCommand(check, con.Con);
                     cmdcheck.Parameters.AddWithValue("@fname", txtAuthorFname.Text.Trim());
                     cmdcheck.Parameters.AddWithValue("@lname", txtAuthorLname.Text.Trim());
                     SqlDataReader sdr = cmdcheck.ExecuteReader();
 
-                    if (sdr.Read()) //if theres a record
+                    if (sdr.Read()) //if theres a record, return, meaning we cannot allow it
                     {
                         MessageBox.Show("Cannot update record, the data you are trying to change already exist.");
                         sdr.Close();
@@ -259,6 +259,8 @@ namespace SampleSystem
                         cmd.ExecuteNonQuery();
                         AuthorLoad("");
                         enabledNewTransbutton();
+                        clearControls();
+
                     }
                     
                 }
@@ -304,6 +306,7 @@ namespace SampleSystem
                         cmd.ExecuteNonQuery();
                         AuthorLoad("");
                         enabledNewTransbutton();
+                        clearControls();
                     }
                 }
                 else
@@ -356,6 +359,7 @@ namespace SampleSystem
                         cmd.ExecuteNonQuery();
                         AuthorLoad("");
                         enabledNewTransbutton();
+                        clearControls();
                     }
                     
                 }
