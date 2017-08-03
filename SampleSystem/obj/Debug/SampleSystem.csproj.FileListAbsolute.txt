@@ -33,3 +33,7 @@ C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\Accou
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\BarrowerUC.baml
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\CourseUC.baml
 C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\TransactionUC.baml
+C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\Trans_borrow.g.cs
+C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\Trans_return.g.cs
+C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\Trans_borrow.baml
+C:\Users\pb7n0062\Documents\New folder\SampleSystem\SampleSystem\obj\Debug\Trans_return.baml

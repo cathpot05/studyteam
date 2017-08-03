@@ -78,6 +78,12 @@
     <Compile Include="TransactionUC.xaml.cs">
       <DependentUpon>TransactionUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Trans_borrow.xaml.cs">
+      <DependentUpon>Trans_borrow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Trans_return.xaml.cs">
+      <DependentUpon>Trans_return.xaml</DependentUpon>
+    </Compile>
     <Page Include="AccountUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -137,6 +143,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TransactionUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Trans_borrow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Trans_return.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -219,6 +233,12 @@
   <ItemGroup>
     <Resource Include="Images\borrow.png" />
     <Resource Include="Images\return.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\back.png" />
+    <Resource Include="Images\back1.png" />
+    <Resource Include="Images\borrow1.png" />
+    <Resource Include="Images\return1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

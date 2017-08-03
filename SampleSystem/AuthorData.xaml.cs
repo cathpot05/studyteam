@@ -236,10 +236,11 @@ namespace SampleSystem
                 if(con  != null)
                 {
                     //let's check first if the data trying to change is already exist.
-                    string check = "SELECT TOP 1 * FROM tblAuthor WHERE author_fname = @fname and author_lname = @lname";
+                    string check = "SELECT TOP 1 * FROM tblAuthor WHERE author_fname = @fname and author_lname = @lname and authorid <> @id";
                     SqlCommand cmdcheck = new SqlCommand(check, con.Con);
                     cmdcheck.Parameters.AddWithValue("@fname", txtAuthorFname.Text.Trim());
                     cmdcheck.Parameters.AddWithValue("@lname", txtAuthorLname.Text.Trim());
+                    cmdcheck.Parameters.AddWithValue("@id", txtAuthoriD.Text.Trim());
                     SqlDataReader sdr = cmdcheck.ExecuteReader();
 
                     if (sdr.Read()) //if theres a record, return, meaning we cannot allow it

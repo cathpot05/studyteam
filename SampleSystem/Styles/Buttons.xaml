@@ -46,7 +46,18 @@
     <ImageBrush x:Key="Trans1" ImageSource="..\Images\filemanager1.png"/>
 
 
-    <!--Disables Buttons-->
+    <!--Transaction Buttons Enabled-->
+    <ImageBrush x:Key="Borrow_Books" ImageSource="..\Images\borrow.png"/>
+    <ImageBrush x:Key="Return_Books" ImageSource="..\Images\return.png"/>
+    <ImageBrush x:Key="BackTrans" ImageSource="..\Images\back.png"/>
+
+    <!--Transaction Buttons Disabled-->
+    <ImageBrush x:Key="Borrow_Books1" ImageSource="..\Images\borrow1.png"/>
+    <ImageBrush x:Key="Return_Books1" ImageSource="..\Images\return1.png"/>
+    <ImageBrush x:Key="BackTrans1" ImageSource="..\Images\back1.png"/>
+
+
+    <!--CRUD Disables Buttons-->
     <ImageBrush x:Key="AddPress" ImageSource="..\Images\crud_add_disabled.png"/>
     <ImageBrush x:Key="EditPress" ImageSource="..\Images\crud_edit_disabled.png"/>
     <ImageBrush x:Key="DeletePress" ImageSource="..\Images\crud_delete_disabled.png"/>
