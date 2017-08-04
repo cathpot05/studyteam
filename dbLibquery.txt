@@ -1,0 +1,201 @@
+--before running this, create a database first named DbLib then run the following query
+
+USE [DbLib]
+GO
+/****** Object:  Table [dbo].[tblTransactions]    Script Date: 08/04/2017 09:16:36 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblTransactions](
+	[transHeadId] [int] IDENTITY(1,1) NOT NULL,
+	[barrower_id] [int] NOT NULL,
+	[date_barrowed] [date] NOT NULL,
+	[due_date] [date] NOT NULL,
+	[book_count] [int] NOT NULL,
+	[status] [int] NOT NULL,
+ CONSTRAINT [PK_tblTransactions] PRIMARY KEY CLUSTERED 
+(
+	[transHeadId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblCourse]    Script Date: 08/04/2017 09:16:36 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblCourse](
+	[course_id] [int] NOT NULL,
+	[coursecode] [varchar](10) NOT NULL,
+	[coursedesc] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_tblCourse] PRIMARY KEY CLUSTERED 
+(
+	[course_id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tblBooks]    Script Date: 08/04/2017 09:16:36 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblBooks](
+	[bookid] [int] IDENTITY(1,1) NOT NULL,
+	[booktitle] [varchar](100) NOT NULL,
+	[bookauthor_id] [varchar](100) NOT NULL,
+	[datepublished] [date] NOT NULL,
+	[qty] [int] NOT NULL,
+	[stocks] [int] NOT NULL,
+ CONSTRAINT [PK_tblBooks] PRIMARY KEY CLUSTERED 
+(
+	[bookid] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+SET IDENTITY_INSERT [dbo].[tblBooks] ON
+INSERT [dbo].[tblBooks] ([bookid], [booktitle], [bookauthor_id], [datepublished], [qty], [stocks]) VALUES (1, N'Sample', N'1', CAST(0x163D0B00 AS Date), 10, 5)
+INSERT [dbo].[tblBooks] ([bookid], [booktitle], [bookauthor_id], [datepublished], [qty], [stocks]) VALUES (2, N'Sample1', N'2', CAST(0x173D0B00 AS Date), 10, 5)
+INSERT [dbo].[tblBooks] ([bookid], [booktitle], [bookauthor_id], [datepublished], [qty], [stocks]) VALUES (3, N'a', N'3', CAST(0x003D0B00 AS Date), 1, 1)
+SET IDENTITY_INSERT [dbo].[tblBooks] OFF
+/****** Object:  Table [dbo].[tblAuthor]    Script Date: 08/04/2017 09:16:36 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblAuthor](
+	[authorid] [int] IDENTITY(1,1) NOT NULL,
+	[author_fname] [varchar](50) NOT NULL,
+	[author_lname] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_tblAuthor] PRIMARY KEY CLUSTERED 
+(
+	[authorid] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+SET IDENTITY_INSERT [dbo].[tblAuthor] ON
+INSERT [dbo].[tblAuthor] ([authorid], [author_fname], [author_lname]) VALUES (1, N'JK', N'Rowling')
+INSERT [dbo].[tblAuthor] ([authorid], [author_fname], [author_lname]) VALUES (2, N'test', N'test1')
+INSERT [dbo].[tblAuthor] ([authorid], [author_fname], [author_lname]) VALUES (3, N'a', N'a')
+INSERT [dbo].[tblAuthor] ([authorid], [author_fname], [author_lname]) VALUES (4, N'1', N'1')
+INSERT [dbo].[tblAuthor] ([authorid], [author_fname], [author_lname]) VALUES (5, N'1', N'2')
+SET IDENTITY_INSERT [dbo].[tblAuthor] OFF
+/****** Object:  Table [dbo].[tblUsers]    Script Date: 08/04/2017 09:16:36 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblUsers](
+	[userId] [int] IDENTITY(1,1) NOT NULL,
+	[username] [varchar](50) NOT NULL,
+	[password] [varchar](50) NOT NULL,
+	[fname] [varchar](100) NOT NULL,
+	[mname] [varchar](100) NOT NULL,
+	[lastname] [varchar](100) NOT NULL,
+	[user_level] [int] NOT NULL,
+ CONSTRAINT [PK_tblUsers] PRIMARY KEY CLUSTERED 
+(
+	[userId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+SET IDENTITY_INSERT [dbo].[tblUsers] ON
+INSERT [dbo].[tblUsers] ([userId], [username], [password], [fname], [mname], [lastname], [user_level]) VALUES (1, N'cath', N'cath', N'catherine', N'manguiat', N'olaguir', 1)
+SET IDENTITY_INSERT [dbo].[tblUsers] OFF
+/****** Object:  Table [dbo].[tblUserLevel]    Script Date: 08/04/2017 09:16:36 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblUserLevel](
+	[user_level_id] [int] IDENTITY(1,1) NOT NULL,
+	[user_level_desc] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_tblUserLevel] PRIMARY KEY CLUSTERED 
+(
+	[user_level_id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+SET IDENTITY_INSERT [dbo].[tblUserLevel] ON
+INSERT [dbo].[tblUserLevel] ([user_level_id], [user_level_desc]) VALUES (1, N'admin')
+INSERT [dbo].[tblUserLevel] ([user_level_id], [user_level_desc]) VALUES (2, N'user')
+SET IDENTITY_INSERT [dbo].[tblUserLevel] OFF
+/****** Object:  Table [dbo].[tblTransaDet]    Script Date: 08/04/2017 09:16:36 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblTransaDet](
+	[transDetid] [int] IDENTITY(1,1) NOT NULL,
+	[transHeadId] [int] NOT NULL,
+	[book_id] [int] NOT NULL,
+	[date_returned] [date] NULL,
+	[qty] [int] NOT NULL,
+	[penalty] [decimal](18, 2) NULL,
+	[remarks] [varchar](100) NULL,
+	[status] [int] NOT NULL,
+ CONSTRAINT [PK_tblTransaDet] PRIMARY KEY CLUSTERED 
+(
+	[transDetid] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tblBarrower]    Script Date: 08/04/2017 09:16:36 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblBarrower](
+	[barrower_id] [varchar](50) NOT NULL,
+	[barrower_fname] [varchar](100) NOT NULL,
+	[barrower_lastname] [varchar](100) NOT NULL,
+	[course] [int] NOT NULL,
+ CONSTRAINT [PK_tblBarrower] PRIMARY KEY CLUSTERED 
+(
+	[barrower_id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Default [DF_tblTransactions_status]    Script Date: 08/04/2017 09:16:36 ******/
+ALTER TABLE [dbo].[tblTransactions] ADD  CONSTRAINT [DF_tblTransactions_status]  DEFAULT ((0)) FOR [status]
+GO
+/****** Object:  ForeignKey [FK_tblBarrower_tblCourse]    Script Date: 08/04/2017 09:16:36 ******/
+ALTER TABLE [dbo].[tblBarrower]  WITH CHECK ADD  CONSTRAINT [FK_tblBarrower_tblCourse] FOREIGN KEY([course])
+REFERENCES [dbo].[tblCourse] ([course_id])
+GO
+ALTER TABLE [dbo].[tblBarrower] CHECK CONSTRAINT [FK_tblBarrower_tblCourse]
+GO
+/****** Object:  ForeignKey [FK_tblTransaDet_tblTransactions]    Script Date: 08/04/2017 09:16:36 ******/
+ALTER TABLE [dbo].[tblTransaDet]  WITH CHECK ADD  CONSTRAINT [FK_tblTransaDet_tblTransactions] FOREIGN KEY([transDetid])
+REFERENCES [dbo].[tblTransactions] ([transHeadId])
+GO
+ALTER TABLE [dbo].[tblTransaDet] CHECK CONSTRAINT [FK_tblTransaDet_tblTransactions]
+GO
