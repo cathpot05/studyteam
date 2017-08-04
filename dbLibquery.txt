@@ -1,8 +1,9 @@
 --before running this, create a database first named DbLib then run the following query
 
+
 USE [DbLib]
 GO
-/****** Object:  Table [dbo].[tblTransactions]    Script Date: 08/04/2017 09:16:36 ******/
+/****** Object:  Table [dbo].[tblTransactions]    Script Date: 08/04/2017 17:23:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -20,7 +21,25 @@ CREATE TABLE [dbo].[tblTransactions](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[tblCourse]    Script Date: 08/04/2017 09:16:36 ******/
+/****** Object:  Table [dbo].[tblSettings]    Script Date: 08/04/2017 17:23:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblSettings](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[PrevVal] [int] NOT NULL,
+	[NextVal] [int] NOT NULL,
+ CONSTRAINT [PK_tblSettings] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[tblSettings] ON
+INSERT [dbo].[tblSettings] ([id], [PrevVal], [NextVal]) VALUES (1, 8, 9)
+SET IDENTITY_INSERT [dbo].[tblSettings] OFF
+/****** Object:  Table [dbo].[tblCourse]    Script Date: 08/04/2017 17:23:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -28,7 +47,7 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[tblCourse](
-	[course_id] [int] NOT NULL,
+	[course_id] [int] IDENTITY(1,1) NOT NULL,
 	[coursecode] [varchar](10) NOT NULL,
 	[coursedesc] [varchar](50) NOT NULL,
  CONSTRAINT [PK_tblCourse] PRIMARY KEY CLUSTERED 
@@ -39,7 +58,10 @@ CREATE TABLE [dbo].[tblCourse](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[tblBooks]    Script Date: 08/04/2017 09:16:36 ******/
+SET IDENTITY_INSERT [dbo].[tblCourse] ON
+INSERT [dbo].[tblCourse] ([course_id], [coursecode], [coursedesc]) VALUES (2, N'1', N'1')
+SET IDENTITY_INSERT [dbo].[tblCourse] OFF
+/****** Object:  Table [dbo].[tblBooks]    Script Date: 08/04/2017 17:23:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -66,7 +88,7 @@ INSERT [dbo].[tblBooks] ([bookid], [booktitle], [bookauthor_id], [datepublished]
 INSERT [dbo].[tblBooks] ([bookid], [booktitle], [bookauthor_id], [datepublished], [qty], [stocks]) VALUES (2, N'Sample1', N'2', CAST(0x173D0B00 AS Date), 10, 5)
 INSERT [dbo].[tblBooks] ([bookid], [booktitle], [bookauthor_id], [datepublished], [qty], [stocks]) VALUES (3, N'a', N'3', CAST(0x003D0B00 AS Date), 1, 1)
 SET IDENTITY_INSERT [dbo].[tblBooks] OFF
-/****** Object:  Table [dbo].[tblAuthor]    Script Date: 08/04/2017 09:16:36 ******/
+/****** Object:  Table [dbo].[tblAuthor]    Script Date: 08/04/2017 17:23:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -92,7 +114,7 @@ INSERT [dbo].[tblAuthor] ([authorid], [author_fname], [author_lname]) VALUES (3,
 INSERT [dbo].[tblAuthor] ([authorid], [author_fname], [author_lname]) VALUES (4, N'1', N'1')
 INSERT [dbo].[tblAuthor] ([authorid], [author_fname], [author_lname]) VALUES (5, N'1', N'2')
 SET IDENTITY_INSERT [dbo].[tblAuthor] OFF
-/****** Object:  Table [dbo].[tblUsers]    Script Date: 08/04/2017 09:16:36 ******/
+/****** Object:  Table [dbo].[tblUsers]    Script Date: 08/04/2017 17:23:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -118,7 +140,7 @@ GO
 SET IDENTITY_INSERT [dbo].[tblUsers] ON
 INSERT [dbo].[tblUsers] ([userId], [username], [password], [fname], [mname], [lastname], [user_level]) VALUES (1, N'cath', N'cath', N'catherine', N'manguiat', N'olaguir', 1)
 SET IDENTITY_INSERT [dbo].[tblUsers] OFF
-/****** Object:  Table [dbo].[tblUserLevel]    Script Date: 08/04/2017 09:16:36 ******/
+/****** Object:  Table [dbo].[tblUserLevel]    Script Date: 08/04/2017 17:23:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -140,7 +162,7 @@ SET IDENTITY_INSERT [dbo].[tblUserLevel] ON
 INSERT [dbo].[tblUserLevel] ([user_level_id], [user_level_desc]) VALUES (1, N'admin')
 INSERT [dbo].[tblUserLevel] ([user_level_id], [user_level_desc]) VALUES (2, N'user')
 SET IDENTITY_INSERT [dbo].[tblUserLevel] OFF
-/****** Object:  Table [dbo].[tblTransaDet]    Script Date: 08/04/2017 09:16:36 ******/
+/****** Object:  Table [dbo].[tblTransaDet]    Script Date: 08/04/2017 17:23:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -164,7 +186,7 @@ CREATE TABLE [dbo].[tblTransaDet](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[tblBarrower]    Script Date: 08/04/2017 09:16:36 ******/
+/****** Object:  Table [dbo].[tblBarrower]    Script Date: 08/04/2017 17:23:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -184,16 +206,16 @@ CREATE TABLE [dbo].[tblBarrower](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Default [DF_tblTransactions_status]    Script Date: 08/04/2017 09:16:36 ******/
+/****** Object:  Default [DF_tblTransactions_status]    Script Date: 08/04/2017 17:23:04 ******/
 ALTER TABLE [dbo].[tblTransactions] ADD  CONSTRAINT [DF_tblTransactions_status]  DEFAULT ((0)) FOR [status]
 GO
-/****** Object:  ForeignKey [FK_tblBarrower_tblCourse]    Script Date: 08/04/2017 09:16:36 ******/
+/****** Object:  ForeignKey [FK_tblBarrower_tblCourse]    Script Date: 08/04/2017 17:23:04 ******/
 ALTER TABLE [dbo].[tblBarrower]  WITH CHECK ADD  CONSTRAINT [FK_tblBarrower_tblCourse] FOREIGN KEY([course])
 REFERENCES [dbo].[tblCourse] ([course_id])
 GO
 ALTER TABLE [dbo].[tblBarrower] CHECK CONSTRAINT [FK_tblBarrower_tblCourse]
 GO
-/****** Object:  ForeignKey [FK_tblTransaDet_tblTransactions]    Script Date: 08/04/2017 09:16:36 ******/
+/****** Object:  ForeignKey [FK_tblTransaDet_tblTransactions]    Script Date: 08/04/2017 17:23:04 ******/
 ALTER TABLE [dbo].[tblTransaDet]  WITH CHECK ADD  CONSTRAINT [FK_tblTransaDet_tblTransactions] FOREIGN KEY([transDetid])
 REFERENCES [dbo].[tblTransactions] ([transHeadId])
 GO
