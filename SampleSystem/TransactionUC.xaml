@@ -14,9 +14,9 @@
                 <ResourceDictionary Source="Styles/Buttons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+        
+        <!--if there's a storyboard-->
     </UserControl.Resources>
-    
-    
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -29,11 +29,10 @@
                 <RowDefinition Height="180"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-
-            <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <ContentControl x:Name="UC_Trans"/>
+            <ContentControl x:Name="UC_Trans" Height="220" Width="515" Grid.Row="0" Visibility="Collapsed"/>
+            <StackPanel x:Name="maintrans_panel" Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <StackPanel x:Name="panel_btnborrow" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button x:Name="btnBarrowTrans" FontFamily="Century Gothic" Style="{StaticResource BtnStyle}" Height="50" Width="50">
+                    <Button x:Name="btnBarrowTrans" FontFamily="Century Gothic" Style="{StaticResource BtnStyle}" Height="50" Width="50" Click="btnBarrowTrans_Click">
                         <Button.Background>
                             <ImageBrush ImageSource="Images/borrow.png"/>
                         </Button.Background>
@@ -41,7 +40,7 @@
                     <TextBlock Text="Borrow" FontFamily="Century Gothic" Foreground="WhiteSmoke" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel x:Name="panel_btnreturn" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button x:Name="btnReturnTrans" FontFamily="Century Gothic" Style="{StaticResource BtnStyle}" Height="50" Width="50">
+                    <Button x:Name="btnReturnTrans" FontFamily="Century Gothic" Style="{StaticResource BtnStyle}" Height="50" Width="50" Click="btnReturnTrans_Click">
                         <Button.Background>
                             <ImageBrush ImageSource="Images/return.png"/>
                         </Button.Background>
@@ -50,8 +49,12 @@
                 </StackPanel>
             </StackPanel>
             
-            <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal">
-                <Button x:Name="btnBack" FontFamily="Century Gothic"></Button>
+            <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal" Background="Transparent">
+                <Button x:Name="btnBack" FontFamily="Century Gothic" Style="{StaticResource BtnStyle}" Width="50" MouseEnter="btnBack_MouseEnter" TouchEnter="btnBack_TouchEnter" MouseLeave="btnBack_MouseLeave"  Click="btnBack_Click" IsEnabled="False" Panel.ZIndex="2" Visibility="Collapsed">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/back.png"/>
+                    </Button.Background>
+                </Button>
             </StackPanel>
             
         </Grid>

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SampleSystem"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Height="220" Width="515" Loaded="UserControl_Loaded">
+             d:DesignHeight="300" d:DesignWidth="300" Height="220" Width="515" Loaded="UserControl_Loaded" >
 
     <UserControl.Resources>
         <ResourceDictionary>

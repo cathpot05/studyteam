@@ -82,7 +82,7 @@ namespace SampleSystem
                                 break;
                             case "btnTransWindow":
                                 {
-                                    btnborrowerWindow.Background = (ImageBrush)Resources["Trans"];
+                                    btnTransWindow.Background = (ImageBrush)Resources["Trans"];
                                 }
                                 break;
                         }
@@ -144,7 +144,7 @@ namespace SampleSystem
                                 break;
                             case "btnTransWindow":
                                 {
-                                    btnborrowerWindow.Background = (ImageBrush)Resources["Trans1"];
+                                    btnTransWindow.Background = (ImageBrush)Resources["Trans1"];
                                 }
                                 break;
                         }
@@ -176,21 +176,24 @@ namespace SampleSystem
                     menuslide(false, "sbShowAuthorMenu", "sbHideAuthorMenu", AuthorData_UC);
                     break;
                 case "Course":
-
+                    menuslide(false, "sbShowCourseMenu", "sbHideCourseMenu", Course_UC);
                     break;
                 case "Acct":
 
                     break;
                 case "Trans":
-
+                    menuslide(false, "sbShowTransMenu", "sbHideTransMenu", TransUC);
                     break;
                 case "Barrower":
-
+                    menuslide(false, "sbShowBarrowerMenu", "sbHideBarrowerMenu", BarrowerUC);
                     break;
                 default:
                         checker = "";
                         menuslide(false, "sbShowBookMenu", "sbHideBookMenu", BooksData_UC);
                         menuslide(false, "sbShowAuthorMenu", "sbHideAuthorMenu", AuthorData_UC);
+                        menuslide(false, "sbShowBarrowerMenu", "sbHideBarrowerMenu", BarrowerUC);
+                        menuslide(false, "sbShowTransMenu", "sbHideTransMenu", TransUC);
+                        menuslide(false, "sbShowCourseMenu", "sbHideCourseMenu", Course_UC);
                     break;
             }
         }
@@ -275,6 +278,7 @@ namespace SampleSystem
 
         private void btnbooksWindow_Click(object sender, RoutedEventArgs e)
         {
+            BooksData_UC.comboBoxLoad();
             storyBoardExit();
             checker = "Books";
             menuslide(true, "sbShowBookMenu", "sbHideBookMenu", BooksData_UC);
@@ -292,18 +296,21 @@ namespace SampleSystem
         {
             storyBoardExit();
             checker = "Barrower";
+            menuslide(true, "sbShowBarrowerMenu", "sbHideBarrowerMenu", BarrowerUC);
         }
 
         private void btnCourseWindow_Click(object sender, RoutedEventArgs e)
         {
             storyBoardExit();
             checker = "Course";
+            menuslide(true, "sbShowCourseMenu", "sbHideCourseMenu", Course_UC);
         }
 
         private void btnTransWindow_Click(object sender, RoutedEventArgs e)
         {
             storyBoardExit();
             checker = "Trans";
+            menuslide(true, "sbShowTransMenu", "sbHideTransMenu", TransUC);
         }
 
         void timer_tick(object sender, EventArgs e)

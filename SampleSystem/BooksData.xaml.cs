@@ -216,7 +216,7 @@ namespace SampleSystem
             con.conclose();
         }
 
-        private void comboBoxLoad()
+        public void comboBoxLoad()
         {
             SqlConnect con = new SqlConnect();
             con.conOpen();
@@ -260,6 +260,7 @@ namespace SampleSystem
         private void btnB_Add_Click(object sender, RoutedEventArgs e)
         {
             clearControls();
+            enabledNewTransbutton();
         }
 
         private void btnB_Edit_Click(object sender, RoutedEventArgs e)
@@ -283,9 +284,11 @@ namespace SampleSystem
                 if (con != null)
                 {
                     //let's check first if the data trying to change is already exist.
-                    string check = "SELECT TOP 1 * FROM tblBooks WHERE booktitle = @title";
+                    
+                    string check = "SELECT TOP 1 * FROM tblBooks WHERE booktitle = @title and bookid <> @id";
                     SqlCommand cmdcheck = new SqlCommand(check, con.Con);
                     cmdcheck.Parameters.AddWithValue("@title", txtbTitle.Text.Trim());
+                    cmdcheck.Parameters.AddWithValue("@id", txtBookId.Text.Trim());
                     SqlDataReader sdr = cmdcheck.ExecuteReader();
 
                     if (sdr.Read()) //if theres a record, return, meaning we cannot allow it
@@ -310,6 +313,7 @@ namespace SampleSystem
                         gridLoading("");
                         enabledNewTransbutton();
                         clearControls();
+                        MessageBox.Show("Record updated successfully");
 
                     }
 
@@ -358,6 +362,7 @@ namespace SampleSystem
                         gridLoading("");
                         enabledNewTransbutton();
                         clearControls();
+                        MessageBox.Show("Record deleted successfully");
                     }
 
                 }
@@ -401,7 +406,7 @@ namespace SampleSystem
 
                     if (sdr.Read()) //if theres a record, return, meaning we cannot allow it
                     {
-                        MessageBox.Show("Cannot add this record, the data you are trying to change already exist.");
+                        MessageBox.Show("Cannot add this record, the data you are trying to insert already exist.");
                         sdr.Close();
                         return;
                     }
@@ -420,6 +425,7 @@ namespace SampleSystem
                         gridLoading("");
                         enabledNewTransbutton();
                         clearControls();
+                        MessageBox.Show("Record saved successfully");
 
                     }
 

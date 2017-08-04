@@ -30,12 +30,37 @@
                 <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=BooksData_UC, Path=ItemSize, Converter={StaticResource marginConverter}}" To="-525 0 520 0" AccelerationRatio="0.9" Duration="0:0:0.5"/>
             </Storyboard>
 
+            <!--Transaction Animations-->
+            <Storyboard x:Key="sbShowTransMenu">
+                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=BooksData_UC, Path=ItemSize, Converter={StaticResource marginConverter}}" To="0 0 0 0" DecelerationRatio="0.9" Duration="0:0:0.5"/>
+            </Storyboard>
+            <Storyboard x:Key="sbHideTransMenu">
+                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=BooksData_UC, Path=ItemSize, Converter={StaticResource marginConverter}}" To="-525 0 520 0" AccelerationRatio="0.9" Duration="0:0:0.5"/>
+            </Storyboard>
+
+
+            <!--Barrower Animations-->
+            <Storyboard x:Key="sbShowBarrowerMenu">
+                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=BooksData_UC, Path=ItemSize, Converter={StaticResource marginConverter}}" To="0 0 0 0" DecelerationRatio="0.9" Duration="0:0:0.5"/>
+            </Storyboard>
+            <Storyboard x:Key="sbHideBarrowerMenu">
+                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=BooksData_UC, Path=ItemSize, Converter={StaticResource marginConverter}}" To="-525 0 520 0" AccelerationRatio="0.9" Duration="0:0:0.5"/>
+            </Storyboard>
+
 
             <!--Author Data Animations-->
             <Storyboard x:Key="sbShowAuthorMenu">
                 <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=AuthorData_UC, Path=ItemSize, Converter={StaticResource marginConverter}}" To="0 0 0 0" DecelerationRatio="0.9" Duration="0:0:0.5"/>
             </Storyboard>
             <Storyboard x:Key="sbHideAuthorMenu">
+                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=AuthorData_UC, Path=ItemSize, Converter={StaticResource marginConverter}}" To="525 0 -520 0" AccelerationRatio="0.9" Duration="0:0:0.5"/>
+            </Storyboard>
+
+            <!--Course Data Animations-->
+            <Storyboard x:Key="sbShowCourseMenu">
+                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=AuthorData_UC, Path=ItemSize, Converter={StaticResource marginConverter}}" To="0 0 0 0" DecelerationRatio="0.9" Duration="0:0:0.5"/>
+            </Storyboard>
+            <Storyboard x:Key="sbHideCourseMenu">
                 <ThicknessAnimation Storyboard.TargetProperty="Margin" From="{Binding ElementName=AuthorData_UC, Path=ItemSize, Converter={StaticResource marginConverter}}" To="525 0 -520 0" AccelerationRatio="0.9" Duration="0:0:0.5"/>
             </Storyboard>
 
@@ -122,8 +147,13 @@
 
                 
             </Grid>
+            <!--insert here the UC acct settings from ease left-->
             <local:BooksData x:Name="BooksData_UC" Margin="-525 0 520 0"/>
             <local:AuthorData x:Name="AuthorData_UC" Margin="525 0 -520 0"/>
+            <local:BarrowerUC x:Name="BarrowerUC" Margin="-525 0 520 0"/>
+            <local:CourseUC x:Name="Course_UC" Margin="525 0 -520 0"/>
+            <local:TransactionUC x:Name="TransUC" Margin="-525 0 520 0"/>
+            
             <Grid x:Name="second_row_grid" Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
