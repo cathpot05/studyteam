@@ -82,7 +82,7 @@ namespace SampleSystem
                                 break;
                             case "btnTransWindow":
                                 {
-                                    btnborrowerWindow.Background = (ImageBrush)Resources["Trans"];
+                                    btnTransWindow.Background = (ImageBrush)Resources["Trans"];
                                 }
                                 break;
                         }
@@ -144,7 +144,7 @@ namespace SampleSystem
                                 break;
                             case "btnTransWindow":
                                 {
-                                    btnborrowerWindow.Background = (ImageBrush)Resources["Trans1"];
+                                    btnTransWindow.Background = (ImageBrush)Resources["Trans1"];
                                 }
                                 break;
                         }
@@ -191,6 +191,9 @@ namespace SampleSystem
                         checker = "";
                         menuslide(false, "sbShowBookMenu", "sbHideBookMenu", BooksData_UC);
                         menuslide(false, "sbShowAuthorMenu", "sbHideAuthorMenu", AuthorData_UC);
+                        menuslide(false, "sbShowBarrowerMenu", "sbHideBarrowerMenu", BarrowerUC);
+                        menuslide(false, "sbShowTransMenu", "sbHideTransMenu", TransUC);
+                        menuslide(false, "sbShowCourseMenu", "sbHideCourseMenu", Course_UC);
                     break;
             }
         }

@@ -313,6 +313,7 @@ namespace SampleSystem
                         gridLoading("");
                         enabledNewTransbutton();
                         clearControls();
+                        MessageBox.Show("Record updated successfully");
 
                     }
 
@@ -361,6 +362,7 @@ namespace SampleSystem
                         gridLoading("");
                         enabledNewTransbutton();
                         clearControls();
+                        MessageBox.Show("Record deleted successfully");
                     }
 
                 }
@@ -404,7 +406,7 @@ namespace SampleSystem
 
                     if (sdr.Read()) //if theres a record, return, meaning we cannot allow it
                     {
-                        MessageBox.Show("Cannot add this record, the data you are trying to change already exist.");
+                        MessageBox.Show("Cannot add this record, the data you are trying to insert already exist.");
                         sdr.Close();
                         return;
                     }
@@ -423,6 +425,7 @@ namespace SampleSystem
                         gridLoading("");
                         enabledNewTransbutton();
                         clearControls();
+                        MessageBox.Show("Record saved successfully");
 
                     }
 

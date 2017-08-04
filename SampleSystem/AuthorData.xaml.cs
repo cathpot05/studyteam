@@ -261,6 +261,7 @@ namespace SampleSystem
                         AuthorLoad("");
                         enabledNewTransbutton();
                         clearControls();
+                        MessageBox.Show("Record updated successfully");
 
                     }
                     
@@ -308,6 +309,7 @@ namespace SampleSystem
                         AuthorLoad("");
                         enabledNewTransbutton();
                         clearControls();
+                        MessageBox.Show("Record deleted successfully");
                     }
                 }
                 else
@@ -361,6 +363,7 @@ namespace SampleSystem
                         AuthorLoad("");
                         enabledNewTransbutton();
                         clearControls();
+                        MessageBox.Show("Record saved successfully");
                     }
                     
                 }

@@ -230,7 +230,7 @@ namespace SampleSystem
                 if (con != null)
                 {
                     //let's check first if the data trying to change is already exist.
-                    string check = "SELECT TOP 1 * FROM tblCourse WHERE coursecode = @course and courseid <> @id";
+                    string check = "SELECT TOP 1 * FROM tblCourse WHERE coursecode = @course and course_id <> @id";
                     SqlCommand cmdcheck = new SqlCommand(check, con.Con);
                     cmdcheck.Parameters.AddWithValue("@course", txtCcode.Text.Trim());
                     cmdcheck.Parameters.AddWithValue("@id", txtCourseiD.Text.Trim());
@@ -245,7 +245,7 @@ namespace SampleSystem
                     else //we can change or update it
                     {
                         sdr.Close();
-                        string query = "UPDATE tblcourse SET coursecode = @ccode, coursedesc = @cdesc WHERE courseid = @id";
+                        string query = "UPDATE tblcourse SET coursecode = @ccode, coursedesc = @cdesc WHERE course_id = @id";
                         SqlCommand cmd = new SqlCommand(query, con.Con);
                         cmd.Parameters.AddWithValue("@ccode", txtCcode.Text.Trim());
                         cmd.Parameters.AddWithValue("@cdesc", txtCdesc.Text.Trim());
@@ -254,6 +254,7 @@ namespace SampleSystem
                         CourseLoad("");
                         enabledNewTransbutton();
                         clearControls();
+                        MessageBox.Show("Record updated successfully");
 
                     }
 
@@ -275,16 +276,130 @@ namespace SampleSystem
         private void btnA_Delete_Click(object sender, RoutedEventArgs e)
         {
 
+            try
+            {
+                SqlConnect con = new SqlConnect();
+                con.conOpen();
+                if (con != null)
+                {
+                    //let's check first if the data trying to delete is being used by the borrowers list.
+                    string check = "SELECT TOP 1 * FROM tblBarrower WHERE course = @id";
+                    SqlCommand cmdcheck = new SqlCommand(check, con.Con);
+                    cmdcheck.Parameters.AddWithValue("@id", txtCourseiD.Text.Trim());
+                    SqlDataReader sdr = cmdcheck.ExecuteReader();
+
+                    if (sdr.Read()) //if theres a record, return, meaning we cannot allow it
+                    {
+                        MessageBox.Show("Cannot delete record, the data you are trying to delete is being used by the barrowers");
+                        sdr.Close();
+                        return;
+                    }
+                    else //we can delete it
+                    {
+                        sdr.Close();
+                        string query = "DELETE FROM tblcourse WHERE course_id = @id";
+                        SqlCommand cmd = new SqlCommand(query, con.Con);
+                        cmd.Parameters.AddWithValue("@id", txtCourseiD.Text.Trim());
+                        cmd.ExecuteNonQuery();
+                        CourseLoad("");
+                        enabledNewTransbutton();
+                        clearControls();
+                        MessageBox.Show("Record deleted successfully");
+
+                    }
+
+                }
+                else
+                {
+                    return;
+                }
+                con.conclose();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void btnA_Save_Click(object sender, RoutedEventArgs e)
         {
 
+             try
+            {
+                //let's check first if textboxes are empty since we cannot insert blank data
+                if (txtCcode.Text.Trim() == null || txtCdesc.Text.Trim() == null)
+                {
+                    MessageBox.Show("Course data cannot be empty.");
+                    return;
+                }
+                SqlConnect con = new SqlConnect();
+                con.conOpen();
+                if (con != null)
+                {
+                    //check first if the record trying to add is already exist
+                    string check = "SELECT TOP 1 * FROM tblCourse WHERE coursecode = @ccode and coursedesc = @cdesc";
+                    SqlCommand cmdcheck = new SqlCommand(check, con.Con);
+                    cmdcheck.Parameters.AddWithValue("@ccode", txtCcode.Text.Trim());
+                    cmdcheck.Parameters.AddWithValue("@cdesc", txtCdesc.Text.Trim());
+                    SqlDataReader sdr = cmdcheck.ExecuteReader();
+
+                    if (sdr.Read()) //if theres a record
+                    {
+                        MessageBox.Show("Cannot Insert. The record you are trying to add is already exist. ");
+                        sdr.Close();
+                        return;
+                    }
+                    else //let's insert and add the data
+                    {
+                        sdr.Close();
+                        string query = "INSERT INTO tblCourse (coursecode, coursedesc) VALUES (@ccode, @cdesc)";
+                        SqlCommand cmd = new SqlCommand(query, con.Con);
+                        cmd.Parameters.AddWithValue("@ccode", txtCcode.Text.Trim());
+                        cmd.Parameters.AddWithValue("@cdesc", txtCdesc.Text.Trim());
+                        cmd.ExecuteNonQuery();
+                        CourseLoad("");
+                        enabledNewTransbutton();
+                        clearControls();
+                        MessageBox.Show("Record saved successfully");
+                    }
+                    
+                }
+                else
+                {
+                    return;
+                }
+                con.conclose();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             CourseLoad("");
+        }
+
+        private void txtUASearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CourseLoad(this.txtUASearch.Text.Trim());
+        }
+
+        private void txtUASearch_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (this.txtUASearch.Text == "")
+            {
+                txtUASearchToolTip.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void txtUASearch_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtUASearchToolTip.Visibility = Visibility.Hidden;
         }
     }
 }
