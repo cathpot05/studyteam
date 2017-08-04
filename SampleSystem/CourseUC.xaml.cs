@@ -214,11 +214,14 @@ namespace SampleSystem
             enabledNewTransbutton();
 
             CrudConfiguration test = new CrudConfiguration();
-            string[] col = new string [] {"author_id", "author_fname", "author_lname" };
-            string[] values = new string[] {"1", "Harry", "Potter" };
-            //test.getColumns(col);
-            Console.WriteLine(test.getColumns(col));
-            Console.WriteLine(test.setVals(values));
+            string[] col = new string [] {"author_fname", "author_lname" };
+            string[] values = new string[] {txtCcode.Text, txtCdesc.Text};
+            string tablename = "tblAuthor";
+            string conds = "";
+            if(test.saveTrans(tablename, col, values, conds))
+            {
+                //MessageBox.Show("Record added successfully");
+            }
         }
 
         private void btnA_Edit_Click(object sender, RoutedEventArgs e)

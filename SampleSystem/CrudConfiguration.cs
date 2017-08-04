@@ -10,23 +10,35 @@ namespace SampleSystem
 {
     class CrudConfiguration
     {
-        //public string function;
-        //public string table;
-        //public string[] columns;
-        //public string[] values;
-        //public string[] conditionValues;
-
-
-        public bool saveTrans(string table, string[] cols, string[] vals, string[] conditions)
+        public bool saveTrans(string table, string[] cols, string[] vals, string conditions)
         {
             SqlConnect con = new SqlConnect();
             con.conOpen();
 
             var columns = getColumns(cols);
             var values = setVals(vals);
+            int x = vals.Length;
+            string[] param = new string[vals.Length];
+            for(int y=0; y < x; y++)
+            {
+                param[y] = "@param"+y.ToString();
+            }
+
+            //Console.WriteLine(param);
+            //param = param.TrimEnd(param[param.Length - 1]);
+            int count = 0;
+
             if (con != null)
             {
-                string query = "INSERT INTO "+table+ " (" +columns+ ") VALUES ("+ values + ")";
+                string query = "INSERT INTO "+table+ " (" +columns+ ") VALUES ("+ separateParam(param) + ") " +conditions+ "  ";
+                SqlCommand cmd = new SqlCommand(query, con.Con);
+                foreach (string paramX in vals)
+                {
+                    var valParam = "@param" + count.ToString();
+                    cmd.Parameters.AddWithValue(valParam, paramX.Trim());
+                    count += 1;
+                }
+                Console.WriteLine(query);
             }
             return true;
         }
@@ -53,16 +65,30 @@ namespace SampleSystem
         {
             string definedvals = "";
             string lastelem = vals.Last();
-            if (!vals.Equals(lastelem))
-            {
-                definedvals += vals + ",";
-            }
-            else
-            {
-                definedvals += vals;
+            foreach (string x in vals) { 
+                if (!x.Equals(lastelem))
+                {
+                    definedvals += "'" + x + "' ,";
+                }
+                else
+                {
+                    definedvals += "'" + x + "'";
+                }
             }
             return definedvals;
                  
+        }
+
+
+        public string separateParam(string[] vals)
+        {
+            string definedvals = "";
+            string lastelem = vals.Last();
+            foreach (string x in vals)
+            {
+                definedvals += x;
+            }
+            return definedvals;
         }
 
     }
