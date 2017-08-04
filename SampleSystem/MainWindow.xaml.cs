@@ -294,6 +294,7 @@ namespace SampleSystem
 
         private void btnborrowerWindow_Click(object sender, RoutedEventArgs e)
         {
+            BarrowerUC.loadCourse();
             storyBoardExit();
             checker = "Barrower";
             menuslide(true, "sbShowBarrowerMenu", "sbHideBarrowerMenu", BarrowerUC);

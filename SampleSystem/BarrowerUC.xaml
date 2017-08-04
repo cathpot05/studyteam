@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SampleSystem"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Height="220" Width="515">
+             d:DesignHeight="300" d:DesignWidth="300" Height="220" Width="515" Loaded="UserControl_Loaded">
 
 
     <UserControl.Resources>
@@ -22,6 +22,93 @@
                 <GradientStop Color="White" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <!--<RowDefinition/>-->
+            </Grid.RowDefinitions>
 
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="350"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Margin="5 5 5 5">
+                    <TextBlock Text="Barrower Configurations" Foreground="WhiteSmoke" FontFamily="Monotype Corsiva" Margin="0 0 0 5" HorizontalAlignment="Center"/>
+                    <Grid>
+                        <TextBlock x:Name="txtSearchToolTip" Text="Search Here.." FontFamily="Century Gothic" Foreground="Gray" Margin="20 5 0 0" Visibility="Visible" FontSize="10"/>
+                        <Border BorderThickness="1" CornerRadius="3" BorderBrush="WhiteSmoke" Margin="0 0 0 5">
+                            <DockPanel>
+                                <Image DockPanel.Dock="Left" Source="Images/search.png" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                <TextBox x:Name="txtUBSearch" Margin="0 0 0 5" FontFamily="Century Gothic" GotFocus="txtUBSearch_GotFocus" LostFocus="txtUBSearch_LostFocus" TextChanged="txtUBSearch_TextChanged" BorderBrush="Transparent" BorderThickness="0" Background="Transparent">
+                                </TextBox>
+                            </DockPanel>
+                        </Border>
+
+                    </Grid>
+                    <DataGrid x:Name="dgBarrower" FontFamily="Century Gothic" Height="160" HorizontalGridLinesBrush="#FF688CAF" VerticalGridLinesBrush="#FF688CAF" ItemsSource="{Binding}" MouseLeftButtonUp="dgBarrower_MouseLeftButtonUp">
+                        <DataGrid.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </DataGrid.Background>
+                    </DataGrid>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Margin="5 5 5 5" Orientation="Vertical"  VerticalAlignment="Center">
+                    <TextBlock Text="Borrower Id" FontFamily="Century Gothic" Foreground="WhiteSmoke" FontSize="10"/>
+                    <TextBox x:Name="txtBarrowerId" IsReadOnly="True" FontFamily="Century Gothic" Margin="0 0 0 5"/>
+                    
+                    <TextBlock Text="First Name:" FontFamily="Century Gothic" Foreground="WhiteSmoke" FontSize="10"/>
+                    <TextBox x:Name="txtFname" FontFamily="Century Gothic" Margin="0 0 0 5"/>
+
+                    <TextBlock Text="Last Name:" FontFamily="Century Gothic" Foreground="WhiteSmoke" FontSize="10"/>
+                    <TextBox x:Name="txtLname" FontFamily="Century Gothic" Margin="0 0 0 5"/>
+
+                    <TextBlock Text="Course:" FontFamily="Century Gothic" Foreground="WhiteSmoke" FontSize="10"/>
+                    <ComboBox x:Name="cboCourse" Margin="0 0 0 5" FontFamily="Century Gothic"/>
+
+                    
+                    <StackPanel x:Name="FunctionButtons_Book" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Vertical">
+                            <Button x:Name="btnB_Add" Width="40" Height="40" Content="" BorderBrush="Transparent" Style="{StaticResource BtnStyle}" Click="btnB_Add_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images\crud_add.png"></ImageBrush>
+                                </Button.Background>
+                            </Button>
+                            <TextBlock Text="Add" FontFamily="Century Gothic" FontSize="10" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Button x:Name="btnB_Edit" Width="40" Height="40" Content="" BorderBrush="Transparent" Style="{StaticResource BtnStyle}" Click="btnB_Edit_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images\crud_edit.png"></ImageBrush>
+                                </Button.Background>
+                            </Button>
+                            <TextBlock Text="Modify" FontFamily="Century Gothic" FontSize="10" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Button x:Name="btnB_Delete" Width="40" Height="40" Content="" BorderBrush="Transparent" Style="{StaticResource BtnStyle}" Click="btnB_Delete_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images\crud_delete.png"></ImageBrush>
+                                </Button.Background>
+                            </Button>
+                            <TextBlock Text="Delete" FontFamily="Century Gothic" FontSize="10" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Button x:Name="btnB_Save" Width="40" Height="40" Content="" BorderBrush="Transparent" Style="{StaticResource BtnStyle}" Click="btnB_Save_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images\crud_save.png"></ImageBrush>
+                                </Button.Background>
+                            </Button>
+                            <TextBlock Text="Save" FontFamily="Century Gothic" FontSize="10" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>
