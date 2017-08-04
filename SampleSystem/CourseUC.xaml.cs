@@ -213,15 +213,7 @@ namespace SampleSystem
             clearControls();
             enabledNewTransbutton();
 
-            CrudConfiguration test = new CrudConfiguration();
-            string[] col = new string [] {"author_fname", "author_lname" };
-            string[] values = new string[] {txtCcode.Text, txtCdesc.Text};
-            string tablename = "tblAuthor";
-            string conds = "";
-            if(test.saveTrans(tablename, col, values, conds))
-            {
-                //MessageBox.Show("Record added successfully");
-            }
+            
         }
 
         private void btnA_Edit_Click(object sender, RoutedEventArgs e)
@@ -364,15 +356,26 @@ namespace SampleSystem
                     else //let's insert and add the data
                     {
                         sdr.Close();
-                        string query = "INSERT INTO tblCourse (coursecode, coursedesc) VALUES (@ccode, @cdesc)";
-                        SqlCommand cmd = new SqlCommand(query, con.Con);
-                        cmd.Parameters.AddWithValue("@ccode", txtCcode.Text.Trim());
-                        cmd.Parameters.AddWithValue("@cdesc", txtCdesc.Text.Trim());
-                        cmd.ExecuteNonQuery();
-                        CourseLoad("");
-                        enabledNewTransbutton();
-                        clearControls();
-                        MessageBox.Show("Record saved successfully");
+                        CrudConfiguration insert = new CrudConfiguration();
+                        string[] col = new string[] { "coursecode", "coursedesc" };
+                        string[] values = new string[] { txtCcode.Text, txtCdesc.Text };
+                        string tablename = "tblCourse";
+                        string conds = "";
+                        if (insert.saveTrans(tablename, col, values, conds))
+                        {
+                            CourseLoad("");
+                            enabledNewTransbutton();
+                            clearControls();
+                            MessageBox.Show("Record saved successfully");
+                        }
+
+                        /* string query = "INSERT INTO tblCourse (coursecode, coursedesc) VALUES (@ccode, @cdesc)";
+                         SqlCommand cmd = new SqlCommand(query, con.Con);
+                         cmd.Parameters.AddWithValue("@ccode", txtCcode.Text.Trim());
+                         cmd.Parameters.AddWithValue("@cdesc", txtCdesc.Text.Trim());
+                         cmd.ExecuteNonQuery();
+                         */
+
                     }
                     
                 }
