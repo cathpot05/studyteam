@@ -23,5 +23,93 @@
             </LinearGradientBrush>
         </Grid.Background>
 
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="280"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid x:Name="first_colgrid" Grid.Column="0" Background="Transparent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="130"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Vertical" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBox x:Name="txtSearch" FontFamily="Century Gothic" Width="180" Background="Transparent" Margin="0 0 0 5" FontSize="9"/>
+                    <DataGrid x:Name="grdbookstoBorrow" Grid.Row="0" FontFamily="Century Gothic" Height="90" FontSize="10">
+                        <DataGrid.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </DataGrid.Background>
+                    </DataGrid>    
+                </StackPanel>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0" Margin="3 0 0 0 ">
+                        <TextBlock Text="Book Title:" FontFamily="Monotype Corsiva" FontSize="9"/>
+                        <TextBlock x:Name="txtTitle" FontFamily="Century Gothic" TextWrapping="Wrap" Text="---" FontSize="9" Foreground="WhiteSmoke" Margin="5 0 0 0"/>
+                        <TextBox x:Name="transbook_id" FontFamily="Century Gothic" Visibility="Collapsed"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="1" Margin="3 0 0 0 ">
+                        <TextBlock Text="Book Author:" FontFamily="Monotype Corsiva" FontSize="9"/>
+                        <TextBlock x:Name="txtAuthor" FontFamily="Century Gothic" TextWrapping="Wrap" Text="---" FontSize="9" Foreground="WhiteSmoke" Margin="5 0 0 0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0">
+                        <TextBlock Text="Is Available:" FontFamily="Monotype Corsiva" FontSize="9"/>
+                        <TextBlock x:Name="txtAvail" FontFamily="Century Gothic" TextWrapping="Wrap" Text="---" FontSize="9" Foreground="WhiteSmoke" Margin="5 0 0 0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+                        <TextBlock Text="Stocks:" FontFamily="Monotype Corsiva" FontSize="9"/>
+                        <TextBlock x:Name="txtStocks" FontFamily="Century Gothic" TextWrapping="Wrap" Text="---" FontSize="9" Foreground="WhiteSmoke" Margin="5 0 0 0"/>
+                    </StackPanel>
+                </Grid>
+                
+                
+            </Grid>
+            <StackPanel x:Name="sec_colgrid" Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 50">
+                <Button x:Name="btnaddCart" Style="{StaticResource BtnStyle}" Width="30" Height="30">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images\r_arrow.png"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="btnremoveCart" Style="{StaticResource BtnStyle}" Width="30" Height="30">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images\l_arrow.png"/>
+                    </Button.Background>
+                </Button>
+            </StackPanel>
+            <Grid x:Name="third_colgrid" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions> 
+                <StackPanel Orientation="Vertical"  HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0">
+                    <TextBlock FontFamily="Monotype Corsiva" Text="Current Book Cart" Foreground="WhiteSmoke" FontSize="10"/>
+                    <DataGrid x:Name="dgBookCart" Width="100" Height="90">
+                        <DataGrid.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </DataGrid.Background>
+                    </DataGrid>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
     </Grid>
 </UserControl>

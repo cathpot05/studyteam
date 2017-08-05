@@ -197,7 +197,6 @@ namespace SampleSystem
             {
                 txtSearchToolTip.Visibility = Visibility.Visible;
             }
-
         }
 
         private void txtUBSearch_GotFocus(object sender, RoutedEventArgs e)
@@ -300,7 +299,7 @@ namespace SampleSystem
                 {
                     //let's check first if the data trying to change is already exist.
 
-                    string check = "SELECT TOP 1 * FROM tblBarrower WHERE barrower_fname = @fname and barrower_lname = @lname and course = @course and barrower_id <> @id";
+                    string check = "SELECT TOP 1 * FROM tblBarrower WHERE barrower_fname = @fname and barrower_lastname = @lname and course = @course and barrower_id <> @id";
                     SqlCommand cmdcheck = new SqlCommand(check, con.Con);
                     cmdcheck.Parameters.AddWithValue("@fname", txtFname.Text.Trim());
                     cmdcheck.Parameters.AddWithValue("@lname", txtLname.Text.Trim());
@@ -317,7 +316,7 @@ namespace SampleSystem
                     else //we can change or update it
                     {
                         sdr.Close();
-                        string query = "UPDATE tblBarrower SET  barrower_fname = @fname, barrower_lname = @lname, course = @course WHERE barrower_id = @id";
+                        string query = "UPDATE tblBarrower SET  barrower_fname = @fname, barrower_lastname = @lname, course = @course WHERE barrower_id = @id";
                         SqlCommand cmd = new SqlCommand(query, con.Con);
                         cmd.Parameters.AddWithValue("@fname", txtFname.Text.Trim());
                         cmd.Parameters.AddWithValue("@lname", txtLname.Text.Trim());
@@ -411,7 +410,7 @@ namespace SampleSystem
                 if (con != null)
                 {
                     //let's check first if the data trying to change is already exist.
-                    string check = "SELECT TOP 1 * FROM tblBarrower WHERE barrower_fname = @fname and barrower_lname = @lname";
+                    string check = "SELECT TOP 1 * FROM tblBarrower WHERE barrower_fname = @fname and barrower_lastname = @lname";
                     SqlCommand cmdcheck = new SqlCommand(check, con.Con);
                     cmdcheck.Parameters.AddWithValue("@fname", txtFname.Text.Trim());
                     cmdcheck.Parameters.AddWithValue("@lname", txtFname.Text.Trim());
@@ -426,7 +425,7 @@ namespace SampleSystem
                     else //we can add or insert it
                     {
                         sdr.Close();
-                        string query = "INSERT INTO tblBarrower (barrower_id, bookauthor_id, barrower_fname, barrower_lname, course) VALUES (@id, @fname, @lname, @course)";
+                        string query = "INSERT INTO tblBarrower (barrower_id, barrower_fname, barrower_lastname, course) VALUES (@id, @fname, @lname, @course)";
                         SqlCommand cmd = new SqlCommand(query, con.Con);
                         cmd.Parameters.AddWithValue("@id", txtBarrowerId.Text.Trim());
                         cmd.Parameters.AddWithValue("@fname", txtFname.Text.Trim());

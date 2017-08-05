@@ -12,6 +12,9 @@ namespace SampleSystem
 {
     class CrudConfiguration
     {
+
+        SqlConnect con = new SqlConnect();
+        
         public bool saveTrans(string table, string[] cols, string[] vals)
         {
            try
@@ -128,6 +131,7 @@ namespace SampleSystem
             string last = condtns.Values.Last();
             foreach(var item in condtns)
             {
+                //concatConds = (!item.Value.Equals(last)) ? concatConds += item.Key + "=" + item.Value + ", " : concatConds += item.Key + "=" + item.Value;
                 if (!item.Value.Equals(last))
                 {
                     concatConds += item.Key + "=" + item.Value + ", ";
@@ -156,7 +160,6 @@ namespace SampleSystem
                 }
                 
             }
-            Console.WriteLine(concatVals);
             return concatVals;
         }
         public string getColumns(string[] columns)

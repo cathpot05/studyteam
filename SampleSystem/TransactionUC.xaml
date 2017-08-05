@@ -14,7 +14,6 @@
                 <ResourceDictionary Source="Styles/Buttons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-        
         <!--if there's a storyboard-->
     </UserControl.Resources>
     <Grid>
