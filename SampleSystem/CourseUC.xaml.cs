@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -198,7 +199,6 @@ namespace SampleSystem
         {
             if (dgCourse.SelectedIndex != -1)
             {
-
                 DataRowView x = (DataRowView)dgCourse.SelectedItems[0];
                 txtCourseiD.Text = x[0].ToString();
                 txtCcode.Text = x[1].ToString();
@@ -247,17 +247,22 @@ namespace SampleSystem
                     else //we can change or update it
                     {
                         sdr.Close();
-                        string query = "UPDATE tblcourse SET coursecode = @ccode, coursedesc = @cdesc WHERE course_id = @id";
-                        SqlCommand cmd = new SqlCommand(query, con.Con);
-                        cmd.Parameters.AddWithValue("@ccode", txtCcode.Text.Trim());
-                        cmd.Parameters.AddWithValue("@cdesc", txtCdesc.Text.Trim());
-                        cmd.Parameters.AddWithValue("@id", txtCourseiD.Text.Trim());
-                        cmd.ExecuteNonQuery();
-                        CourseLoad("");
-                        enabledNewTransbutton();
-                        clearControls();
-                        MessageBox.Show("Record updated successfully");
+                        CrudConfiguration update = new CrudConfiguration();
+                        string tablename = "tblCourse"; //tablename
+                        string[] col = new string[] { "coursecode", "coursedesc" }; //tblcolumns to update
+                        string[] values = new string[] { txtCcode.Text.Trim(), txtCdesc.Text.Trim() }; //values to pass
+                        Dictionary<string, string> conds = new Dictionary<string, string>
+                        {
+                            { "course_id", txtCourseiD.Text.Trim() }
+                        }; //the conditions to make
 
+                        if (update.updateTrans(tablename, col, values, conds))
+                        {
+                            CourseLoad("");
+                            enabledNewTransbutton();
+                            clearControls();
+                            MessageBox.Show("Record updated successfully");
+                        }
                     }
 
                 }
@@ -299,15 +304,20 @@ namespace SampleSystem
                     else //we can delete it
                     {
                         sdr.Close();
-                        string query = "DELETE FROM tblcourse WHERE course_id = @id";
-                        SqlCommand cmd = new SqlCommand(query, con.Con);
-                        cmd.Parameters.AddWithValue("@id", txtCourseiD.Text.Trim());
-                        cmd.ExecuteNonQuery();
-                        CourseLoad("");
-                        enabledNewTransbutton();
-                        clearControls();
-                        MessageBox.Show("Record deleted successfully");
+                        CrudConfiguration delete = new CrudConfiguration();
+                        string tablename = "tblCourse"; //tablename
+                        Dictionary<string, string> conds = new Dictionary<string, string>
+                        {
+                            { "course_id", txtCourseiD.Text.Trim() }
+                        }; //the conditions to make
 
+                        if (delete.deleteTrans(tablename, conds))
+                        {
+                            CourseLoad("");
+                            enabledNewTransbutton();
+                            clearControls();
+                            MessageBox.Show("Record deleted successfully");
+                        }
                     }
 
                 }
@@ -358,24 +368,15 @@ namespace SampleSystem
                         sdr.Close();
                         CrudConfiguration insert = new CrudConfiguration();
                         string[] col = new string[] { "coursecode", "coursedesc" };
-                        string[] values = new string[] { txtCcode.Text, txtCdesc.Text };
+                        string[] values = new string[] { txtCcode.Text.Trim(), txtCdesc.Text.Trim() };
                         string tablename = "tblCourse";
-                        string conds = "";
-                        if (insert.saveTrans(tablename, col, values, conds))
+                        if (insert.saveTrans(tablename, col, values))
                         {
                             CourseLoad("");
                             enabledNewTransbutton();
                             clearControls();
                             MessageBox.Show("Record saved successfully");
                         }
-
-                        /* string query = "INSERT INTO tblCourse (coursecode, coursedesc) VALUES (@ccode, @cdesc)";
-                         SqlCommand cmd = new SqlCommand(query, con.Con);
-                         cmd.Parameters.AddWithValue("@ccode", txtCcode.Text.Trim());
-                         cmd.Parameters.AddWithValue("@cdesc", txtCdesc.Text.Trim());
-                         cmd.ExecuteNonQuery();
-                         */
-
                     }
                     
                 }
